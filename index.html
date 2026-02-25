@@ -1,0 +1,305 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Toolkit - Rent & Share Tools Locally</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header/Navigation -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <!-- Search Bar -->
+                <div class="search-container">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" placeholder="Search for items near you..." class="search-input">
+                </div>
+
+                <!-- Navigation -->
+                <nav class="main-nav">
+                    <a href="index.html" class="nav-link active">
+                        <i class="fas fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-box"></i>
+                        <span>My Items</span>
+                    </a>
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Map</span>
+                    </a>
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-robot"></i>
+                        <span>Tool Bot</span>
+                    </a>
+                </nav>
+
+                <!-- User Section -->
+                <div class="user-section">
+                    <a href="login.php" class="btn btn-outline">Login</a>
+                    <a href="register.php" class="btn btn-primary">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Filters Section -->
+    <section class="filters-section">
+        <div class="container">
+            <div class="filters">
+                <div class="filter-dropdown">
+                    <button class="filter-btn">
+                        All Categories
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
+
+                <button class="filter-chip active">
+                    <i class="fas fa-check"></i>
+                    $10
+                </button>
+
+                <button class="filter-chip">5mi</button>
+
+                <button class="filter-chip">Most Relevant</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="content-grid">
+                <!-- Left Column - Item Listings -->
+                <div class="items-column">
+                    <!-- Item Card 1 -->
+                    <div class="item-card">
+                        <div class="item-header">
+                            <div class="user-info">
+                                <div class="avatar avatar-pink">S</div>
+                                <div>
+                                    <div class="user-name">Sarah M.</div>
+                                    <div class="user-distance">1.8 miles away</div>
+                                </div>
+                            </div>
+                            <button class="bookmark-btn">
+                                <i class="far fa-bookmark"></i>
+                            </button>
+                        </div>
+
+                        <div class="item-image">
+                            <img src="https://images.unsplash.com/photo-1504148455328-c376907d081c?w=600&h=400&fit=crop" alt="Power Drill">
+                        </div>
+
+                        <div class="item-footer">
+                            <div class="item-actions">
+                                <button class="action-btn">
+                                    <i class="far fa-circle-question"></i>
+                                </button>
+                                <button class="action-btn">
+                                    <i class="fas fa-share-nodes"></i>
+                                </button>
+                            </div>
+                            <button class="favorite-btn">
+                                <i class="far fa-star"></i>
+                            </button>
+                        </div>
+
+                        <div class="item-details">
+                            <h3 class="item-title">DeWalt Power Drill Set</h3>
+                            <p class="item-description">Professional grade power drill with multiple bits perfect for home projects and DIY repairs</p>
+
+                            <div class="item-price-section">
+                                <div>
+                                    <div class="price-label">Price per day</div>
+                                    <div class="price">$5</div>
+                                </div>
+                                <button class="message-btn">Message</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item Card 2 -->
+                    <div class="item-card">
+                        <div class="item-header">
+                            <div class="user-info">
+                                <div class="avatar avatar-purple">J</div>
+                                <div>
+                                    <div class="user-name">John M.</div>
+                                    <div class="user-distance">2.2 miles away</div>
+                                </div>
+                            </div>
+                            <button class="bookmark-btn">
+                                <i class="far fa-bookmark"></i>
+                            </button>
+                        </div>
+
+                        <div class="item-image">
+                            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop" alt="Lawn Mower">
+                        </div>
+
+                        <div class="item-footer">
+                            <div class="item-actions">
+                                <button class="action-btn">
+                                    <i class="far fa-circle-question"></i>
+                                </button>
+                                <button class="action-btn">
+                                    <i class="fas fa-share-nodes"></i>
+                                </button>
+                            </div>
+                            <button class="favorite-btn">
+                                <i class="far fa-star"></i>
+                            </button>
+                        </div>
+
+                        <div class="item-details">
+                            <h3 class="item-title">Lawn Mower</h3>
+                            <p class="item-description">Old lawn Mower Not really in use however, need gas to use it</p>
+
+                            <div class="item-price-section">
+                                <div>
+                                    <div class="price-label">Price per day</div>
+                                    <div class="price">$10</div>
+                                </div>
+                                <button class="message-btn">Message</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item Card 3 -->
+                    <div class="item-card">
+                        <div class="item-header">
+                            <div class="user-info">
+                                <div class="avatar avatar-pink">R</div>
+                                <div>
+                                    <div class="user-name">Rena S.</div>
+                                    <div class="user-distance">3.1 miles away</div>
+                                </div>
+                            </div>
+                            <button class="bookmark-btn">
+                                <i class="far fa-bookmark"></i>
+                            </button>
+                        </div>
+
+                        <div class="item-image">
+                            <img src="https://images.unsplash.com/photo-1572981779307-38b8cabb2407?w=600&h=400&fit=crop" alt="Tool Set">
+                        </div>
+
+                        <div class="item-footer">
+                            <div class="item-actions">
+                                <button class="action-btn">
+                                    <i class="far fa-circle-question"></i>
+                                </button>
+                                <button class="action-btn">
+                                    <i class="fas fa-share-nodes"></i>
+                                </button>
+                            </div>
+                            <button class="favorite-btn">
+                                <i class="far fa-star"></i>
+                            </button>
+                        </div>
+
+                        <div class="item-details">
+                            <h3 class="item-title">Complete Tool Set</h3>
+                            <p class="item-description">Full toolbox with hammer, screwdrivers, wrenches and more</p>
+
+                            <div class="item-price-section">
+                                <div>
+                                    <div class="price-label">Price per day</div>
+                                    <div class="price">$8</div>
+                                </div>
+                                <button class="message-btn">Message</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item Card 4 -->
+                    <div class="item-card">
+                        <div class="item-header">
+                            <div class="user-info">
+                                <div class="avatar avatar-purple">N</div>
+                                <div>
+                                    <div class="user-name">Nahorn K.</div>
+                                    <div class="user-distance">1.0 miles away</div>
+                                </div>
+                            </div>
+                            <button class="bookmark-btn">
+                                <i class="far fa-bookmark"></i>
+                            </button>
+                        </div>
+
+                        <div class="item-image">
+                            <img src="https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?w=600&h=400&fit=crop" alt="Ladder">
+                        </div>
+
+                        <div class="item-footer">
+                            <div class="item-actions">
+                                <button class="action-btn">
+                                    <i class="far fa-circle-question"></i>
+                                </button>
+                                <button class="action-btn">
+                                    <i class="fas fa-share-nodes"></i>
+                                </button>
+                            </div>
+                            <button class="favorite-btn">
+                                <i class="far fa-star"></i>
+                            </button>
+                        </div>
+
+                        <div class="item-details">
+                            <h3 class="item-title">Extension Ladder</h3>
+                            <p class="item-description">20-foot aluminum ladder, perfect for outdoor projects</p>
+
+                            <div class="item-price-section">
+                                <div>
+                                    <div class="price-label">Price per day</div>
+                                    <div class="price">$12</div>
+                                </div>
+                                <button class="message-btn">Message</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column - Chat Sidebar -->
+                <aside class="chat-sidebar">
+                    <div class="chat-header">
+                        <div class="chat-title">
+                            <i class="fas fa-bars"></i>
+                            <span>Jaxson's Chats</span>
+                        </div>
+                        <button class="new-chat-btn">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+
+                    <div class="chat-search">
+                        <input type="text" placeholder="Search" class="chat-search-input">
+                        <i class="fas fa-search"></i>
+                    </div>
+
+                    <div class="chat-section">
+                        <div class="chat-section-title">Chats</div>
+
+                        <div class="chat-list">
+                            <div class="chat-item">How to drywall</div>
+                            <div class="chat-item">Is io up a good movie</div>
+                            <div class="chat-item">When should I start mowing my lawn</div>
+                            <div class="chat-item">what do I need to use for patching a hole in a wall</div>
+                        </div>
+                    </div>
+
+                    <div class="chat-footer">
+                        <i class="fab fa-facebook-f"></i>
+                        <span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="73151f1a03030a33151a141e125d101c1e">[email&#160;protected]</a></span>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </main>
+
