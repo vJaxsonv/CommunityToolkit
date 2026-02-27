@@ -11,51 +11,52 @@ if (!isset($_SESSION['user_id'])) {
 $search = $_GET['search'] ?? '';
 $category = $_GET['category'] ?? '';
 $max_price = $_GET['max_price'] ?? '';
-$distance = $_GET['distance'] ?? '25';
 
-// Build query
-$sql = "SELECT i.*, 
-        u.FirstName, u.LastName, u.AverageRating, u.UserID as OwnerUserID,
+// Build query with CORRECT column names
+$sql = "SELECT l.*, 
+        u.FirstName, u.LastName, u.UserID as OwnerUserID,
         c.CategoryName,
         cond.ConditionName,
+        ls.StatusName as ListingStatus,
         n.NeighborhoodName, n.City,
-        (SELECT ImageURL FROM ItemImages WHERE ItemID = i.ItemID AND IsPrimaryID = 1 LIMIT 1) as PrimaryImage
-        FROM Items i
-        INNER JOIN Users_CT u ON i.OwnerUserID = u.UserID
-        INNER JOIN ItemCategories c ON i.CategoryID = c.CategoryID
-        INNER JOIN ItemConditions cond ON i.ConditionID = cond.ConditionID
-        LEFT JOIN Neighborhoods n ON i.NeighborhoodID = n.NeighborhoodID
-        WHERE i.IsAvailableID = 1";
+        (SELECT PhotoURL FROM TLisitingPhotos WHERE ListingID = l.ListingID ORDER BY SortOrder LIMIT 1) as PrimaryImage
+        FROM TListings l
+        INNER JOIN TUsers u ON l.UserLenderID = u.UserID
+        INNER JOIN TCategories c ON l.CategoryID = c.CategoryID
+        INNER JOIN TConditions cond ON l.ConditionID = cond.ConditionID
+        INNER JOIN TListingStatuses ls ON l.ListingStatusID = ls.ListingStatusID
+        LEFT JOIN TNeighborhoods n ON u.NeighborhoodID = n.NeighborhoodID
+        WHERE ls.StatusName = 'Active'";
 
 $params = [];
 
 // Add search filter
 if (!empty($search)) {
-    $sql .= " AND (i.ItemName LIKE ? OR i.Description LIKE ?)";
+    $sql .= " AND (l.Title LIKE ? OR l.Description LIKE ?)";
     $params[] = "%$search%";
     $params[] = "%$search%";
 }
 
 // Add category filter
 if (!empty($category)) {
-    $sql .= " AND i.CategoryID = ?";
+    $sql .= " AND l.CategoryID = ?";
     $params[] = $category;
 }
 
 // Add price filter
 if (!empty($max_price)) {
-    $sql .= " AND i.DailyRentalPrice <= ?";
+    $sql .= " AND l.PricePerDay <= ?";
     $params[] = $max_price;
 }
 
-$sql .= " ORDER BY i.DateListed DESC LIMIT 20";
+$sql .= " ORDER BY l.AddedDate DESC LIMIT 20";
 
 $stmt = $pdo->prepare($sql);
 $stmt->execute($params);
 $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // Get categories for filter
-$categories = $pdo->query("SELECT * FROM ItemCategories WHERE ParentCategoryID IS NULL ORDER BY CategoryName")->fetchAll(PDO::FETCH_ASSOC);
+$categories = $pdo->query("SELECT * FROM TCategories WHERE ParentCategoryID IS NULL ORDER BY CategoryName")->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -151,13 +152,6 @@ $categories = $pdo->query("SELECT * FROM ItemCategories WHERE ParentCategoryID I
                     <option value="50" <?php echo ($max_price == '50') ? 'selected' : ''; ?>>Under $50</option>
                 </select>
                 
-                <select name="distance" class="filter-chip" onchange="this.form.submit()">
-                    <option value="5" <?php echo ($distance == '5') ? 'selected' : ''; ?>>5mi</option>
-                    <option value="10" <?php echo ($distance == '10') ? 'selected' : ''; ?>>10mi</option>
-                    <option value="25" <?php echo ($distance == '25') ? 'selected' : ''; ?>>25mi</option>
-                    <option value="50" <?php echo ($distance == '50') ? 'selected' : ''; ?>>50mi</option>
-                </select>
-                
                 <?php if (!empty($search) || !empty($category) || !empty($max_price)): ?>
                     <a href="home.php" class="btn btn-outline btn-sm">Clear Filters</a>
                 <?php endif; ?>
@@ -203,9 +197,9 @@ $categories = $pdo->query("SELECT * FROM ItemCategories WHERE ParentCategoryID I
                             
                             <div class="item-image">
                                 <?php if ($item['PrimaryImage']): ?>
-                                    <img src="<?php echo htmlspecialchars($item['PrimaryImage']); ?>" alt="<?php echo htmlspecialchars($item['ItemName']); ?>">
+                                    <img src="<?php echo htmlspecialchars($item['PrimaryImage']); ?>" alt="<?php echo htmlspecialchars($item['Title']); ?>">
                                 <?php else: ?>
-                                    <img src="https://images.unsplash.com/photo-1504148455328-c376907d081c?w=600&h=400&fit=crop" alt="<?php echo htmlspecialchars($item['ItemName']); ?>">
+                                    <img src="https://images.unsplash.com/photo-1504148455328-c376907d081c?w=600&h=400&fit=crop" alt="<?php echo htmlspecialchars($item['Title']); ?>">
                                 <?php endif; ?>
                             </div>
                             
@@ -224,7 +218,7 @@ $categories = $pdo->query("SELECT * FROM ItemCategories WHERE ParentCategoryID I
                             </div>
                             
                             <div class="item-details">
-                                <h3 class="item-title"><?php echo htmlspecialchars($item['ItemName']); ?></h3>
+                                <h3 class="item-title"><?php echo htmlspecialchars($item['Title']); ?></h3>
                                 <p class="item-description"><?php echo htmlspecialchars(substr($item['Description'], 0, 100)); ?>...</p>
                                 
                                 <div class="item-meta">
@@ -235,9 +229,9 @@ $categories = $pdo->query("SELECT * FROM ItemCategories WHERE ParentCategoryID I
                                 <div class="item-price-section">
                                     <div>
                                         <div class="price-label">Price per day</div>
-                                        <div class="price">$<?php echo number_format($item['DailyRentalPrice'], 2); ?></div>
+                                        <div class="price">$<?php echo number_format($item['PricePerDay'], 2); ?></div>
                                     </div>
-                                    <a href="item_detail.php?id=<?php echo $item['ItemID']; ?>" class="message-btn">View Details</a>
+                                    <a href="item_detail.php?id=<?php echo $item['ListingID']; ?>" class="message-btn">View Details</a>
                                 </div>
                             </div>
                         </div>

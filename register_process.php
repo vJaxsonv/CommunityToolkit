@@ -2,27 +2,22 @@
 require_once 'config.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $username = trim($_POST['username']);
-    $email = trim($_POST['email']);
-    $password = $_POST['password'];
     $firstname = trim($_POST['firstname']);
     $lastname = trim($_POST['lastname']);
+    $email = trim($_POST['email']);
+    $password = $_POST['password'];
+    $confirm_password = $_POST['confirm_password'];
     $phone = trim($_POST['phone']);
-    $address = trim($_POST['address']);
-    $city = trim($_POST['city']);
-    $zip = trim($_POST['zip']);
+    
+    // Check if passwords match
+    if ($password !== $confirm_password) {
+        header('Location: register.php?error=password_mismatch');
+        exit;
+    }
     
     try {
-        // Check if username already exists
-        $stmt = $pdo->prepare("SELECT UserID FROM Users_CT WHERE Username = ?");
-        $stmt->execute([$username]);
-        if ($stmt->fetch()) {
-            header('Location: register.php?error=username');
-            exit;
-        }
-        
         // Check if email already exists
-        $stmt = $pdo->prepare("SELECT UserID FROM Users_CT WHERE Email = ?");
+        $stmt = $pdo->prepare("SELECT UserID FROM TUsers WHERE Email = ?");
         $stmt->execute([$email]);
         if ($stmt->fetch()) {
             header('Location: register.php?error=email');
@@ -32,25 +27,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Hash password
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
         
-        // Insert new user (StateID 35 = Ohio)
-        $sql = "INSERT INTO Users_CT (Username, Password, Email, PhoneNumber, FirstName, LastName, 
-                StreetAddress, City, StateID, ZipCode) 
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, 35, ?)";
+        // Insert new user
+        $sql = "INSERT INTO TUsers (FirstName, LastName, Email, Password, PhoneNumber, AccountStatus) 
+                VALUES (?, ?, ?, ?, ?, 1)";
         
         $stmt = $pdo->prepare($sql);
         
-        if ($stmt->execute([$username, $hashedPassword, $email, $phone, $firstname, $lastname, $address, $city, $zip])) {
+        if ($stmt->execute([$firstname, $lastname, $email, $hashedPassword, $phone])) {
             // Get the new user ID
             $userId = $pdo->lastInsertId();
             
             // Fetch the complete user data
-            $stmt = $pdo->prepare("SELECT * FROM Users_CT WHERE UserID = ?");
+            $stmt = $pdo->prepare("SELECT * FROM TUsers WHERE UserID = ?");
             $stmt->execute([$userId]);
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
             
             // Log them in automatically
             $_SESSION['user_id'] = $userId;
-            $_SESSION['username'] = $username;
             $_SESSION['firstname'] = $firstname;
             $_SESSION['lastname'] = $lastname;
             $_SESSION['email'] = $email;

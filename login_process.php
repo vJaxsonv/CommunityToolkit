@@ -7,15 +7,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
     try {
         // Find user by email
-        $stmt = $pdo->prepare("SELECT * FROM Users_CT WHERE Email = ?");
+        $stmt = $pdo->prepare("SELECT * FROM TUsers WHERE Email = ?");
         $stmt->execute([$email]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
         
-        // Verify password
+        // Verify password and account status
         if ($user && password_verify($password, $user['Password'])) {
+            // Check if account is active
+            if (!$user['AccountStatus']) {
+                header('Location: login.php?error=inactive');
+                exit;
+            }
+            
             // Password correct - log in user
             $_SESSION['user_id'] = $user['UserID'];
-            $_SESSION['username'] = $user['Username'];
             $_SESSION['firstname'] = $user['FirstName'];
             $_SESSION['lastname'] = $user['LastName'];
             $_SESSION['email'] = $user['Email'];
