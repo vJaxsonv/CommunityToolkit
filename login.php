@@ -84,7 +84,7 @@
         </div>
     </div>
 
-<!-- Terms of Service Modal -->
+<!-- Terms of Service Modal helloooo-->
 <div id="termsModal" class="modal">
     <div class="modal-content">
         <div class="modal-header">
