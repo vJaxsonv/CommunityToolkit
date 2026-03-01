@@ -75,29 +75,38 @@ body {
     justify-content: center;
 }
 
-.nav-link {
+.main-nav {
+    display: flex;
+    gap: 30px;
+    flex: 1;
+    justify-content: center;
+}
+
+.main-header .nav-link {
     display: flex;
     align-items: center;
     gap: 8px;
     padding: 8px 16px;
     text-decoration: none;
-    color: #666;
+    color: #fff; /* ALWAYS white */
     font-size: 14px;
     font-weight: 500;
-    transition: color 0.2s;
+    transition: none; /* no fade effect */
 }
 
-.nav-link:hover {
-    color: #333;
+.main-header .nav-link:hover {
+    color: #fff; /* stays white */
 }
 
-.nav-link.active {
-    color: #333;
+.main-header .nav-link.active {
+    color: #fff;
 }
 
-.nav-link i {
+.main-header .nav-link i {
     font-size: 18px;
+    color: #fff;
 }
+
 
 /* User Section */
 .user-section {
@@ -378,7 +387,21 @@ body {
 .message-btn:hover {
     background: #0056b3;
 }
+.Edit-btn {
+    background: #f97316; /* orange */
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
 
+.Edit-btn:hover {
+    background: #ea580c; /* darker orange on hover */
+}
 /* Chat Sidebar */
 .chat-sidebar {
     background: white;
@@ -1212,17 +1235,20 @@ select:focus {
     color: white;
 }
 
+
+
+
 /* Ensure links in navigation maintain color */
-a.nav-link:visited {
+/*a.nav-link:visited {
     color: #666;
 }
 
 a.nav-link.active:visited {
     color: #333;
-}
+}*/
 
 /* Fix header elements for gradient background */
-.main-header .search-input {
+/*.main-header .search-input {
     background: rgba(255,255,255,0.9);
 }
 
@@ -1240,13 +1266,13 @@ a.nav-link.active:visited {
 
 .main-header .nav-link:hover {
     color: rgba(255,255,255,0.8);
-    background: rgba(255,255,255,0.1);
+
 }
 
 .main-header .nav-link.active {
-    background: rgba(255,255,255,0.2);
+
     color: white;
-}
+}*/
 
 /* Force visibility of auth buttons on index.html */
 .main-header .btn-outline,
@@ -1279,8 +1305,10 @@ a.nav-link.active:visited {
 }
 
 /* Ensure user-section is visible */
-.main-header .user-section {
+/*.main-header .user-section {
     display: flex !important;
     gap: 10px !important;
     align-items: center !important;
-}
+}*/
+
+
