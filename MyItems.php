@@ -1,96 +1,64 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Community Toolkit - Rent & Share Tools Locally</title>
+    <title>My Items - Community Toolkit</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Header/Navigation -->
-    <header class="main-header">
-        <div class="container">
-            <div class="header-content">
-                <!-- Search Bar -->
-                <div class="search-container">
-                    <i class="fas fa-search search-icon"></i>
-                    <input type="text" placeholder="Search for items near you..." class="search-input">
-                </div>
 
-                <!-- Navigation -->
-                <nav class="main-nav">
-                    <a href="index.html" class="nav-link active">
-                        <i class="fas fa-home"></i>
-                        <span>Home</span>
-                    </a>
-                    <a href="MyItems.php" class="nav-link">
-                        <i class="fas fa-box"></i>
-                        <span>My Items</span>
-                    </a>
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>Map</span>
-                    </a>
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-robot"></i>
-                        <span>Tool Bot</span>
-                    </a>
-                </nav>
+<!-- Header -->
+<header class="main-header">
+    <div class="container">
+        <div class="header-content">
 
-                <!-- User Section -->
-                <div class="user-section">
-                    <a href="login.php" class="btn btn-outline">Login</a>
-                    <a href="register.php" class="btn btn-outline">Sign Up</a>
-                </div>
+            <!-- Search -->
+            <div class="search-container">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" placeholder="Search for items near you..." class="search-input">
             </div>
-        </div>
-    </header>
 
-    <!-- Filters Section -->
-    <section class="filters-section">
-        <div class="container">
-            <div class="filters">
-                <div class="filter-dropdown">
-                    <button class="filter-btn">
-                        All Categories
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                </div>
+            <!-- Navigation -->
+            <nav class="main-nav">
+                <a href="index.html" class="nav-link">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+                <a href="MyItems.php" class="nav-link active">
+                    <i class="fas fa-box"></i>
+                    <span>My Items</span>
+                </a>
+                <a href="#" class="nav-link">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Map</span>
+                </a>
+                <a href="#" class="nav-link">
+                    <i class="fas fa-robot"></i>
+                    <span>Tool Bot</span>
+                </a>
+            </nav>
 
-                <button class="filter-chip active">
-                    <i class="fas fa-check"></i>
-                    $10
-                </button>
-
-                <button class="filter-chip">5mi</button>
-
-                <button class="filter-chip">Most Relevant</button>
+            <!-- User -->
+            <div class="user-section">
+                <a href="login.php" class="btn btn-outline">Login</a>
+                <a href="register.php" class="btn btn-outline">Sign Up</a>
             </div>
-        </div>
-    </section>
 
-    <!-- Main Content -->
-    <main class="main-content">
+        </div>
+    </div>
+</header>
+
+<!-- Page Content -->
+<main class="main-content">
         <div class="container">
             <div class="content-grid">
                 <!-- Left Column - Item Listings -->
                 <div class="items-column">
                     <!-- Item Card 1 -->
                     <div class="item-card">
-                        <div class="item-header">
-                            <div class="user-info">
-                                <div class="avatar avatar-pink">S</div>
-                                <div>
-                                    <div class="user-name">Sarah M.</div>
-                                    <div class="user-distance">1.8 miles away</div>
-                                </div>
-                            </div>
-                            <button class="bookmark-btn">
-                                <i class="far fa-bookmark"></i>
-                            </button>
-                        </div>
+                    
 
                         <div class="item-image">
                             <img src="https://images.unsplash.com/photo-1504148455328-c376907d081c?w=600&h=400&fit=crop" alt="Power Drill">
@@ -119,25 +87,14 @@
                                     <div class="price-label">Price per day</div>
                                     <div class="price">$5</div>
                                 </div>
-                                <button class="message-btn">Message</button>
+                                <button class="Edit-btn">Edit</button>
                             </div>
                         </div>
                     </div>
 
                     <!-- Item Card 2 -->
                     <div class="item-card">
-                        <div class="item-header">
-                            <div class="user-info">
-                                <div class="avatar avatar-purple">J</div>
-                                <div>
-                                    <div class="user-name">John M.</div>
-                                    <div class="user-distance">2.2 miles away</div>
-                                </div>
-                            </div>
-                            <button class="bookmark-btn">
-                                <i class="far fa-bookmark"></i>
-                            </button>
-                        </div>
+                      
 
                         <div class="item-image">
                             <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop" alt="Lawn Mower">
@@ -166,25 +123,14 @@
                                     <div class="price-label">Price per day</div>
                                     <div class="price">$10</div>
                                 </div>
-                                <button class="message-btn">Message</button>
+                                <button class="Edit-btn">Edit</button>
                             </div>
                         </div>
                     </div>
 
                     <!-- Item Card 3 -->
                     <div class="item-card">
-                        <div class="item-header">
-                            <div class="user-info">
-                                <div class="avatar avatar-pink">R</div>
-                                <div>
-                                    <div class="user-name">Rena S.</div>
-                                    <div class="user-distance">3.1 miles away</div>
-                                </div>
-                            </div>
-                            <button class="bookmark-btn">
-                                <i class="far fa-bookmark"></i>
-                            </button>
-                        </div>
+                       
 
                         <div class="item-image">
                             <img src="https://images.unsplash.com/photo-1572981779307-38b8cabb2407?w=600&h=400&fit=crop" alt="Tool Set">
@@ -213,25 +159,14 @@
                                     <div class="price-label">Price per day</div>
                                     <div class="price">$8</div>
                                 </div>
-                                <button class="message-btn">Message</button>
+                                <button class="Edit-btn">Edit</button>
                             </div>
                         </div>
                     </div>
 
                     <!-- Item Card 4 -->
                     <div class="item-card">
-                        <div class="item-header">
-                            <div class="user-info">
-                                <div class="avatar avatar-purple">N</div>
-                                <div>
-                                    <div class="user-name">Nahorn K.</div>
-                                    <div class="user-distance">1.0 miles away</div>
-                                </div>
-                            </div>
-                            <button class="bookmark-btn">
-                                <i class="far fa-bookmark"></i>
-                            </button>
-                        </div>
+                      
 
                         <div class="item-image">
                             <img src="https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?w=600&h=400&fit=crop" alt="Ladder">
@@ -260,7 +195,7 @@
                                     <div class="price-label">Price per day</div>
                                     <div class="price">$12</div>
                                 </div>
-                                <button class="message-btn">Message</button>
+                                <button class="Edit-btn">Edit</button>
                             </div>
                         </div>
                     </div>
@@ -303,3 +238,6 @@
         </div>
     </main>
 
+
+</body>
+</html>
