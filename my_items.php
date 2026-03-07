@@ -1,5 +1,34 @@
 <?php 
 require_once 'config.php';
+
+// Check if user is logged in
+if (!isset($_SESSION['user_id'])) {
+    header('Location: login.php');
+    exit;
+}
+
+// Get current user ID
+$userId = $_SESSION['user_id'];
+
+// Build query for ONLY the logged-in user's listings
+$sql = "SELECT l.*, 
+        u.FirstName, u.LastName, u.UserID as OwnerUserID,
+        c.CategoryName,
+        cond.ConditionName,
+        ls.StatusName as ListingStatus,
+        n.NeighborhoodName, n.City
+        FROM TListings l
+        INNER JOIN TUsers u ON l.UserLenderID = u.UserID
+        INNER JOIN TCategories c ON l.CategoryID = c.CategoryID
+        INNER JOIN TConditions cond ON l.ConditionID = cond.ConditionID
+        INNER JOIN TListingStatuses ls ON l.ListingStatusID = ls.ListingStatusID
+        LEFT JOIN TNeighborhoods n ON u.NeighborhoodID = n.NeighborhoodID
+        WHERE l.UserLenderID = ?
+        ORDER BY l.AddedDate DESC";
+
+$stmt = $pdo->prepare($sql);
+$stmt->execute([$userId]);
+$items = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,74 +40,71 @@ require_once 'config.php';
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-
-<!-- Header -->
+    <!-- Header/Navigation -->
 <header class="main-header">
     <div class="container">
         <div class="header-content">
-
-            <!-- Search -->
+                <!-- Search Bar -->
             <div class="search-container">
                 <i class="fas fa-search search-icon"></i>
-                <input type="text" placeholder="Search for items near you..." class="search-input">
+                    <input type="text" placeholder="Search your listings..." class="search-input">
             </div>
 
             <!-- Navigation -->
             <nav class="main-nav">
-                <a href="index.html" class="nav-link">
+                    <a href="home.php" class="nav-link">
                     <i class="fas fa-home"></i>
                     <span>Home</span>
                 </a>
-                <a href="MyItems.php" class="nav-link active">
+                    <a href="my_items.php" class="nav-link active">
                     <i class="fas fa-box"></i>
                     <span>My Items</span>
                 </a>
-                <a href="#" class="nav-link">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>Map</span>
+                    <a href="create_listing.php" class="nav-link">
+                        <i class="fas fa-plus-circle"></i>
+                        <span>List Item</span>
                 </a>
-                <a href="#" class="nav-link">
-                    <i class="fas fa-robot"></i>
-                    <span>Tool Bot</span>
+                    <a href="my_rentals.php" class="nav-link">
+                        <i class="fas fa-calendar"></i>
+                        <span>My Rentals</span>
                 </a>
             </nav>
 
-            <!-- User -->
+                <!-- User Section -->
             <div class="user-section">
-                <a href="login.php" class="btn btn-outline">Login</a>
-                <a href="register.php" class="btn btn-outline">Sign Up</a>
+                    <div class="notification-icon">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">0</span>
             </div>
-
+                    <div class="user-menu-container">
+                        <div class="user-avatar">
+                            <?php echo strtoupper(substr($_SESSION['firstname'], 0, 1)); ?>
+                        </div>
+                    </div>
+                </div>
         </div>
     </div>
 </header>
 
-<!-- Page Content -->
+    <!-- Main Content -->
 <main class="main-content">
         <div class="container">
-            <div class="content-grid">
-                <!-- Left Column - Item Listings -->
+            <h1>My Listed Items</h1>
+            
+            <?php if (empty($items)): ?>
+                <div class="empty-state">
+                    <i class="fas fa-box-open fa-3x"></i>
+                    <h2>No items listed yet</h2>
+                    <p>You haven't posted any items yet. <a href="create_listing.php">Create your first listing!</a></p>
+                </div>
+            <?php else: ?>
                 <div class="items-column">
-                    <!-- Item Card 1 -->
+                    <?php foreach($items as $item): ?>
                     <div class="item-card">
-                    
-
-                        <div class="item-image">
-                            <img src="https://images.unsplash.com/photo-1504148455328-c376907d081c?w=600&h=400&fit=crop" alt="Power Drill">
-                        </div>
-
-                        <div class="item-footer">
-                            <div class="item-actions">
-                                <button class="action-btn">
-                                    <i class="far fa-circle-question"></i>
-                                </button>
-                                <button class="action-btn">
-                                    <i class="fas fa-share-nodes"></i>
-                                </button>
-                            </div>
-                            <button class="favorite-btn">
-                                <i class="far fa-star"></i>
-                            </button>
+                            <div class="item-header">
+                                <div class="user-info">
+                                    <div class="avatar avatar-<?php echo ($item['OwnerUserID'] % 2 == 0) ? 'purple' : 'pink'; ?>">
+                                        <?php echo strtoupper(substr($item['FirstName'], 0, 1)); ?>
                         </div>
 
                         <div class="item-details">
@@ -87,10 +113,11 @@ require_once 'config.php';
 
                             <div class="item-price-section">
                                 <div>
-                                    <div class="price-label">Price per day</div>
-                                    <div class="price">$5</div>
+                                        <div class="user-name">
+                                            <?php echo htmlspecialchars($item['FirstName'] . ' ' . substr($item['LastName'], 0, 1) . '.'); ?>
                                 </div>
-                                <button class="Edit-btn">Edit</button>
+                                        <div class="user-distance">
+                                            <?php echo htmlspecialchars($item['ListingStatus']); ?>
                             </div>
                         </div>
                     </div>
@@ -136,17 +163,6 @@ require_once 'config.php';
                        
 
                         <div class="item-image">
-                            <img src="https://images.unsplash.com/photo-1572981779307-38b8cabb2407?w=600&h=400&fit=crop" alt="Tool Set">
-                        </div>
-
-                        <div class="item-footer">
-                            <div class="item-actions">
-                                <button class="action-btn">
-                                    <i class="far fa-circle-question"></i>
-                                </button>
-                                <button class="action-btn">
-                                    <i class="fas fa-share-nodes"></i>
-                                </button>
                             </div>
                             <button class="favorite-btn">
                                 <i class="far fa-star"></i>
@@ -154,17 +170,7 @@ require_once 'config.php';
                         </div>
 
                         <div class="item-details">
-                            <h3 class="item-title">Complete Tool Set</h3>
-                            <p class="item-description">Full toolbox with hammer, screwdrivers, wrenches and more</p>
 
-                            <div class="item-price-section">
-                                <div>
-                                    <div class="price-label">Price per day</div>
-                                    <div class="price">$8</div>
-                                </div>
-                                <button class="Edit-btn">Edit</button>
-                            </div>
-                        </div>
                     </div>
 
                     <!-- Item Card 4 -->
@@ -196,48 +202,13 @@ require_once 'config.php';
                             <div class="item-price-section">
                                 <div>
                                     <div class="price-label">Price per day</div>
-                                    <div class="price">$12</div>
                                 </div>
-                                <button class="Edit-btn">Edit</button>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <!-- Right Column - Chat Sidebar -->
-                <aside class="chat-sidebar">
-                    <div class="chat-header">
-                        <div class="chat-title">
-                            <i class="fas fa-bars"></i>
-                            <span>Jaxson's Chats</span>
-                        </div>
-                        <button class="new-chat-btn">
-                            <i class="fas fa-plus"></i>
-                        </button>
-                    </div>
-
-                    <div class="chat-search">
-                        <input type="text" placeholder="Search" class="chat-search-input">
-                        <i class="fas fa-search"></i>
-                    </div>
-
-                    <div class="chat-section">
-                        <div class="chat-section-title">Chats</div>
-
-                        <div class="chat-list">
-                            <div class="chat-item">How to drywall</div>
-                            <div class="chat-item">Is io up a good movie</div>
-                            <div class="chat-item">When should I start mowing my lawn</div>
-                            <div class="chat-item">what do I need to use for patching a hole in a wall</div>
-                        </div>
-                    </div>
-
-                    <div class="chat-footer">
-                        <i class="fab fa-facebook-f"></i>
-                        <span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="73151f1a03030a33151a141e125d101c1e">[email&#160;protected]</a></span>
-                    </div>
-                </aside>
             </div>
+            <?php endif; ?>
         </div>
     </main>
 
