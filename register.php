@@ -1,4 +1,12 @@
-<?php require_once 'config.php'; ?>
+<?php 
+require_once 'config.php'; 
+
+// Fetch genders for dropdown
+$genders = $pdo->query("SELECT GenderID, Gender FROM TGenders ORDER BY GenderID")->fetchAll(PDO::FETCH_ASSOC);
+
+// Fetch neighborhoods for dropdown
+$neighborhoods = $pdo->query("SELECT NeighborhoodID, NeighborhoodName, City FROM TNeighborhoods ORDER BY NeighborhoodName")->fetchAll(PDO::FETCH_ASSOC);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,6 +34,8 @@
                         echo 'Email already registered';
                     } elseif($_GET['error'] == 'password_mismatch') {
                         echo 'Passwords do not match';
+                    } elseif($_GET['error'] == 'missing_fields') {
+                        echo 'Please fill in all required fields';
                     } else {
                         echo 'Registration failed. Please try again.';
                     }
@@ -36,37 +46,60 @@
             <form method="POST" action="register_process.php" class="auth-form">
                 <div class="form-row">
                     <div class="form-group">
-                        <label>First Name</label>
+                        <label>First Name *</label>
                         <input type="text" name="firstname" required>
                     </div>
                     
                     <div class="form-group">
-                        <label>Last Name</label>
+                        <label>Last Name *</label>
                         <input type="text" name="lastname" required>
                     </div>
                 </div>
                 
                 <div class="form-group">
-                    <label>Email</label>
+                    <label>Email *</label>
                     <input type="email" name="email" required>
                 </div>
                 
                 <div class="form-group">
-                    <label>Password</label>
+                    <label>Phone Number</label>
+                    <input type="tel" name="phone" placeholder="5135551234">
+                    <small>Optional - 10 digits, no dashes</small>
+                </div>
+                
+                <div class="form-group">
+                    <label>Gender *</label>
+                    <select name="gender" required>
+                        <option value="">Select Gender</option>
+                        <?php foreach($genders as $gender): ?>
+                            <option value="<?php echo $gender['GenderID']; ?>">
+                                <?php echo htmlspecialchars($gender['Gender']); ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Neighborhood *</label>
+                    <select name="neighborhood" required>
+                        <option value="">Select Neighborhood</option>
+                        <?php foreach($neighborhoods as $neighborhood): ?>
+                            <option value="<?php echo $neighborhood['NeighborhoodID']; ?>">
+                                <?php echo htmlspecialchars($neighborhood['NeighborhoodName'] . ', ' . $neighborhood['City']); ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Password *</label>
                     <input type="password" name="password" id="password" required minlength="8">
                     <small>Must be at least 8 characters</small>
                 </div>
                 
                 <div class="form-group">
-                    <label>Confirm Password</label>
+                    <label>Confirm Password *</label>
                     <input type="password" name="confirm_password" id="confirm_password" required minlength="8">
-                    <small>Re-enter your password</small>
-                </div>
-                
-                <div class="form-group">
-                    <label>Phone Number</label>
-                    <input type="tel" name="phone" placeholder="513-555-0123">
-                    <small>Optional - for rental communications</small>
                 </div>
                 
                 <div class="form-group">
@@ -86,7 +119,7 @@
         </div>
     </div>
 
-<!-- Terms of Service Modal -->
+<!-- Terms & Privacy Modals -->
 <div id="termsModal" class="modal">
     <div class="modal-content">
         <div class="modal-header">
@@ -96,22 +129,16 @@
         <div class="modal-body">
             <h3>1. Acceptance of Terms</h3>
             <p>By accessing and using Community Toolkit, you accept and agree to be bound by the terms and provision of this agreement.</p>
-            
             <h3>2. Use of Service</h3>
             <p>Community Toolkit is a platform for sharing and renting tools within your local community. You agree to use this service responsibly and legally.</p>
-            
             <h3>3. User Accounts</h3>
-            <p>You are responsible for maintaining the confidentiality of your account and password. You agree to accept responsibility for all activities that occur under your account.</p>
-            
+            <p>You are responsible for maintaining the confidentiality of your account and password.</p>
             <h3>4. Rental Agreements</h3>
             <p>All rental agreements are between individual users. Community Toolkit facilitates connections but is not party to rental agreements.</p>
-            
             <h3>5. Liability</h3>
             <p>Community Toolkit is not responsible for damages, injuries, or losses resulting from tool rentals. Users assume all risks.</p>
-            
             <h3>6. Prohibited Activities</h3>
             <p>You may not use this service for any illegal activities, fraud, or harassment of other users.</p>
-            
             <p><em>Last updated: February 2026</em></p>
         </div>
         <div class="modal-footer">
@@ -120,7 +147,6 @@
     </div>
 </div>
 
-<!-- Privacy Policy Modal -->
 <div id="privacyModal" class="modal">
     <div class="modal-content">
         <div class="modal-header">
@@ -130,28 +156,17 @@
         <div class="modal-body">
             <h3>Information We Collect</h3>
             <p>We collect information you provide when creating an account, including name, email, and phone number.</p>
-            
             <h3>How We Use Your Information</h3>
-            <p>Your information is used to:</p>
             <ul>
                 <li>Facilitate tool rentals between users</li>
                 <li>Communicate about rental transactions</li>
                 <li>Improve our service</li>
                 <li>Ensure platform security</li>
             </ul>
-            
             <h3>Information Sharing</h3>
             <p>We share your name and general location with other users when you list items or request rentals. We never sell your personal information to third parties.</p>
-            
             <h3>Data Security</h3>
             <p>We use industry-standard security measures to protect your data, including password encryption and secure connections.</p>
-            
-            <h3>Your Rights</h3>
-            <p>You can request access to, correction of, or deletion of your personal data at any time by contacting us.</p>
-            
-            <h3>Contact Us</h3>
-            <p>For privacy concerns, email: privacy@communitytoolkit.com</p>
-            
             <p><em>Last updated: February 2026</em></p>
         </div>
         <div class="modal-footer">
@@ -171,7 +186,6 @@ function closeModal(modalId) {
     document.body.style.overflow = 'auto';
 }
 
-// Close modal when clicking outside
 window.onclick = function(event) {
     if (event.target.classList.contains('modal')) {
         event.target.style.display = 'none';
@@ -179,11 +193,11 @@ window.onclick = function(event) {
     }
 }
 
-// Password match validation
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.querySelector('.auth-form');
     const password = document.getElementById('password');
     const confirmPassword = document.getElementById('confirm_password');
+    const phone = document.querySelector('input[name="phone"]');
     
     form.addEventListener('submit', function(e) {
         if (password.value !== confirmPassword.value) {
@@ -192,9 +206,12 @@ document.addEventListener('DOMContentLoaded', function() {
             confirmPassword.focus();
             return false;
         }
+        
+        if (phone && phone.value) {
+            phone.value = phone.value.replace(/[^0-9]/g, '');
+        }
     });
     
-    // Real-time feedback
     confirmPassword.addEventListener('input', function() {
         if (this.value && password.value !== this.value) {
             this.style.borderColor = '#dc3545';
