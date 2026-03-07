@@ -89,7 +89,7 @@ $categories = $pdo->query("SELECT * FROM TCategories WHERE ParentCategoryID IS N
                         <i class="fas fa-home"></i>
                         <span>Home</span>
                     </a>
-                    <a href="myitems.php" class="nav-link">
+                    <a href="my_items.php" class="nav-link">
                         <i class="fas fa-box"></i>
                         <span>My Items</span>
                     </a>
