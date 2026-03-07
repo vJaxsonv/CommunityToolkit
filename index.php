@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+<?php 
+require_once 'config.php';
+
+// Get categories for filter
+$categories = $pdo->query("SELECT CategoryID, CategoryName FROM TCategories WHERE ParentCategoryID = 0 ORDER BY CategoryName")->fetchAll(PDO::FETCH_ASSOC);
+?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -21,11 +27,11 @@
 
                 <!-- Navigation -->
                 <nav class="main-nav">
-                    <a href="index.html" class="nav-link active">
+                    <a href="<?php echo isset($_SESSION['user_id']) ? 'home.php' : 'index.php'; ?>" class="nav-link active">
                         <i class="fas fa-home"></i>
                         <span>Home</span>
                     </a>
-                    <a href="#" class="nav-link">
+                    <a href="MyItems.php" class="nav-link">
                         <i class="fas fa-box"></i>
                         <span>My Items</span>
                     </a>
@@ -41,8 +47,13 @@
 
                 <!-- User Section -->
                 <div class="user-section">
-                    <a href="login.php" class="btn btn-outline">Login</a>
-                    <a href="register.php" class="btn btn-primary">Sign Up</a>
+                    <?php if (isset($_SESSION['user_id'])): ?>
+                        <span style="margin-right: 10px;">Welcome, <?php echo htmlspecialchars($_SESSION['firstname']); ?>!</span>
+                        <a href="logout.php" class="btn btn-outline">Logout</a>
+                    <?php else: ?>
+                        <a href="login.php" class="btn btn-outline">Login</a>
+                        <a href="register.php" class="btn btn-outline">Sign Up</a>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
@@ -52,20 +63,26 @@
     <section class="filters-section">
         <div class="container">
             <div class="filters">
+                <!-- Parent Category -->
                 <div class="filter-dropdown">
-                    <button class="filter-btn">
-                        All Categories
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
+                    <select id="parentCategory" class="filter-select" onchange="loadSubcategories()">
+                        <option value="">All Categories</option>
+                        <?php foreach($categories as $cat): ?>
+                            <option value="<?php echo $cat['CategoryID']; ?>">
+                                <?php echo htmlspecialchars($cat['CategoryName']); ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
                 </div>
 
-                <button class="filter-chip active">
-                    <i class="fas fa-check"></i>
-                    $10
-                </button>
+                <!-- Subcategory (hidden until parent selected) -->
+                <div class="filter-dropdown" id="subcategoryContainer" style="display: none;">
+                    <select id="subcategory" class="filter-select">
+                        <option value="">Select Subcategory</option>
+                    </select>
+                </div>
 
                 <button class="filter-chip">5mi</button>
-
                 <button class="filter-chip">Most Relevant</button>
             </div>
         </div>
@@ -303,3 +320,34 @@
         </div>
     </main>
 
+
+<script>
+async function loadSubcategories() {
+    const parentId = document.getElementById('parentCategory').value;
+    const subcategoryContainer = document.getElementById('subcategoryContainer');
+    const subcategorySelect = document.getElementById('subcategory');
+    
+    if (!parentId) {
+        subcategoryContainer.style.display = 'none';
+        return;
+    }
+    
+    try {
+        const response = await fetch(`get_subcategories.php?parent=${parentId}`);
+        const subcategories = await response.json();
+        
+        subcategorySelect.innerHTML = '<option value="">All Subcategories</option>';
+        
+        subcategories.forEach(sub => {
+            const option = document.createElement('option');
+            option.value = sub.CategoryID;
+            option.textContent = sub.CategoryName;
+            subcategorySelect.appendChild(option);
+        });
+        
+        subcategoryContainer.style.display = subcategories.length > 0 ? 'block' : 'none';
+    } catch (error) {
+        console.error('Error loading subcategories:', error);
+    }
+}
+</script>

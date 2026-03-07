@@ -75,29 +75,38 @@ body {
     justify-content: center;
 }
 
-.nav-link {
+.main-nav {
+    display: flex;
+    gap: 30px;
+    flex: 1;
+    justify-content: center;
+}
+
+.main-header .nav-link {
     display: flex;
     align-items: center;
     gap: 8px;
     padding: 8px 16px;
     text-decoration: none;
-    color: #666;
+    color: #fff; /* ALWAYS white */
     font-size: 14px;
     font-weight: 500;
-    transition: color 0.2s;
+    transition: none; /* no fade effect */
 }
 
-.nav-link:hover {
-    color: #333;
+.main-header .nav-link:hover {
+    color: #fff; /* stays white */
 }
 
-.nav-link.active {
-    color: #333;
+.main-header .nav-link.active {
+    color: #fff;
 }
 
-.nav-link i {
+.main-header .nav-link i {
     font-size: 18px;
+    color: #fff;
 }
+
 
 /* User Section */
 .user-section {
@@ -378,7 +387,21 @@ body {
 .message-btn:hover {
     background: #0056b3;
 }
+.Edit-btn {
+    background: #f97316; /* orange */
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
 
+.Edit-btn:hover {
+    background: #ea580c; /* darker orange on hover */
+}
 /* Chat Sidebar */
 .chat-sidebar {
     background: white;
@@ -1212,17 +1235,20 @@ select:focus {
     color: white;
 }
 
+
+
+
 /* Ensure links in navigation maintain color */
-a.nav-link:visited {
+/*a.nav-link:visited {
     color: #666;
 }
 
 a.nav-link.active:visited {
     color: #333;
-}
+}*/
 
 /* Fix header elements for gradient background */
-.main-header .search-input {
+/*.main-header .search-input {
     background: rgba(255,255,255,0.9);
 }
 
@@ -1240,13 +1266,13 @@ a.nav-link.active:visited {
 
 .main-header .nav-link:hover {
     color: rgba(255,255,255,0.8);
-    background: rgba(255,255,255,0.1);
+
 }
 
 .main-header .nav-link.active {
-    background: rgba(255,255,255,0.2);
+
     color: white;
-}
+}*/
 
 /* Force visibility of auth buttons on index.html */
 .main-header .btn-outline,
@@ -1279,8 +1305,89 @@ a.nav-link.active:visited {
 }
 
 /* Ensure user-section is visible */
-.main-header .user-section {
+/*.main-header .user-section {
     display: flex !important;
     gap: 10px !important;
     align-items: center !important;
+}*/
+.profile-container {
+    width: min(1100px, 94%);
+    margin: 60px auto;
+    padding: 60px;
+    background: #ffffff;
+    border-radius: 28px;
+    border: 1px solid rgba(0,0,0,0.05);
+    box-shadow: 0 25px 60px rgba(0,0,0,0.08);
+    display: flex;
+    align-items: flex-start;
+    gap: 80px;
+}
+
+/* Avatar */
+.profile-avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 52px;
+    font-weight: 700;
+    box-shadow: 0 15px 35px rgba(102,126,234,0.35);
+}
+
+/* Form */
+.profile-form {
+    flex: 1;
+}
+
+.profile-form h2 {
+    margin-bottom: 30px;
+    font-size: 26px;
+}
+
+/* Form group */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #374151;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid #d1d5db;
+    font-size: 15px;
+    transition: border 0.2s;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #4a7ff3;
+}
+
+/* Save button */
+.save-btn {
+    margin-top: 20px;
+    background: #4a7ff3;
+    color: white;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.save-btn:hover {
+    background: #365fd6;
+    transform: translateY(-2px);
 }

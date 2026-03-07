@@ -41,53 +41,53 @@ $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 <body>
     <!-- Header/Navigation -->
-    <header class="main-header">
-        <div class="container">
-            <div class="header-content">
+<header class="main-header">
+    <div class="container">
+        <div class="header-content">
                 <!-- Search Bar -->
-                <div class="search-container">
-                    <i class="fas fa-search search-icon"></i>
+            <div class="search-container">
+                <i class="fas fa-search search-icon"></i>
                     <input type="text" placeholder="Search your listings..." class="search-input">
-                </div>
-                
-                <!-- Navigation -->
-                <nav class="main-nav">
+            </div>
+
+            <!-- Navigation -->
+            <nav class="main-nav">
                     <a href="home.php" class="nav-link">
-                        <i class="fas fa-home"></i>
-                        <span>Home</span>
-                    </a>
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
                     <a href="my_items.php" class="nav-link active">
-                        <i class="fas fa-box"></i>
-                        <span>My Items</span>
-                    </a>
+                    <i class="fas fa-box"></i>
+                    <span>My Items</span>
+                </a>
                     <a href="create_listing.php" class="nav-link">
                         <i class="fas fa-plus-circle"></i>
                         <span>List Item</span>
-                    </a>
+                </a>
                     <a href="my_rentals.php" class="nav-link">
                         <i class="fas fa-calendar"></i>
                         <span>My Rentals</span>
-                    </a>
-                </nav>
-                
+                </a>
+            </nav>
+
                 <!-- User Section -->
-                <div class="user-section">
+            <div class="user-section">
                     <div class="notification-icon">
                         <i class="fas fa-bell"></i>
                         <span class="notification-badge">0</span>
-                    </div>
+            </div>
                     <div class="user-menu-container">
                         <div class="user-avatar">
                             <?php echo strtoupper(substr($_SESSION['firstname'], 0, 1)); ?>
                         </div>
                     </div>
                 </div>
-            </div>
         </div>
-    </header>
-    
+    </div>
+</header>
+
     <!-- Main Content -->
-    <main class="main-content">
+<main class="main-content">
         <div class="container">
             <h1>My Listed Items</h1>
             
@@ -100,58 +100,118 @@ $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <?php else: ?>
                 <div class="items-column">
                     <?php foreach($items as $item): ?>
-                        <div class="item-card">
+                    <div class="item-card">
                             <div class="item-header">
                                 <div class="user-info">
                                     <div class="avatar avatar-<?php echo ($item['OwnerUserID'] % 2 == 0) ? 'purple' : 'pink'; ?>">
                                         <?php echo strtoupper(substr($item['FirstName'], 0, 1)); ?>
-                                    </div>
-                                    <div>
+                        </div>
+
+                        <div class="item-details">
+                            <h3 class="item-title">DeWalt Power Drill Set</h3>
+                            <p class="item-description">Professional grade power drill with multiple bits perfect for home projects and DIY repairs</p>
+
+                            <div class="item-price-section">
+                                <div>
                                         <div class="user-name">
                                             <?php echo htmlspecialchars($item['FirstName'] . ' ' . substr($item['LastName'], 0, 1) . '.'); ?>
-                                        </div>
+                                </div>
                                         <div class="user-distance">
                                             <?php echo htmlspecialchars($item['ListingStatus']); ?>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
-                            
-                            <div class="item-image">
-                                <img src="https://images.unsplash.com/photo-1504148455328-c376907d081c?w=600&h=400&fit=crop" alt="Item Image">
+                        </div>
+                    </div>
+
+                    <!-- Item Card 2 -->
+                    <div class="item-card">
+                      
+
+                        <div class="item-image">
+                            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop" alt="Lawn Mower">
+                        </div>
+
+                        <div class="item-footer">
+                            <div class="item-actions">
+                                <button class="action-btn">
+                                    <i class="far fa-circle-question"></i>
+                                </button>
+                                <button class="action-btn">
+                                    <i class="fas fa-share-nodes"></i>
+                                </button>
                             </div>
-                            
-                            <div class="item-details">
-                                <h3 class="item-title"><?php echo htmlspecialchars($item['Title']); ?></h3>
-                                <p class="item-description">
-                                    <?php echo htmlspecialchars(substr($item['Description'], 0, 100)); ?>...
-                                </p>
-                                
-                                <div class="item-meta">
-                                    <span class="item-category">
-                                        <i class="fas fa-tag"></i> <?php echo htmlspecialchars($item['CategoryName']); ?>
-                                    </span>
-                                    <span class="item-condition">
-                                        <i class="fas fa-check-circle"></i> <?php echo htmlspecialchars($item['ConditionName']); ?>
-                                    </span>
+                            <button class="favorite-btn">
+                                <i class="far fa-star"></i>
+                            </button>
+                        </div>
+
+                        <div class="item-details">
+                            <h3 class="item-title">Lawn Mower</h3>
+                            <p class="item-description">Old lawn Mower Not really in use however, need gas to use it</p>
+
+                            <div class="item-price-section">
+                                <div>
+                                    <div class="price-label">Price per day</div>
+                                    <div class="price">$10</div>
                                 </div>
-                                
-                                <div class="item-price-section">
-                                    <div>
-                                        <div class="price-label">Price per day</div>
-                                        <div class="price">$<?php echo number_format($item['PricePerDay'], 2); ?></div>
-                                    </div>
-                                    <div style="display:flex; gap:10px;">
-                                        <a href="edit_listing.php?id=<?php echo $item['ListingID']; ?>" class="message-btn">Edit</a>
-                                        <a href="delete_listing.php?id=<?php echo $item['ListingID']; ?>" class="message-btn" onclick="return confirm('Are you sure you want to delete this listing?');">Delete</a>
-                                    </div>
+                                <button class="Edit-btn">Edit</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item Card 3 -->
+                    <div class="item-card">
+                       
+
+                        <div class="item-image">
+                            </div>
+                            <button class="favorite-btn">
+                                <i class="far fa-star"></i>
+                            </button>
+                        </div>
+
+                        <div class="item-details">
+
+                    </div>
+
+                    <!-- Item Card 4 -->
+                    <div class="item-card">
+                      
+
+                        <div class="item-image">
+                            <img src="https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?w=600&h=400&fit=crop" alt="Ladder">
+                        </div>
+
+                        <div class="item-footer">
+                            <div class="item-actions">
+                                <button class="action-btn">
+                                    <i class="far fa-circle-question"></i>
+                                </button>
+                                <button class="action-btn">
+                                    <i class="fas fa-share-nodes"></i>
+                                </button>
+                            </div>
+                            <button class="favorite-btn">
+                                <i class="far fa-star"></i>
+                            </button>
+                        </div>
+
+                        <div class="item-details">
+                            <h3 class="item-title">Extension Ladder</h3>
+                            <p class="item-description">20-foot aluminum ladder, perfect for outdoor projects</p>
+
+                            <div class="item-price-section">
+                                <div>
+                                    <div class="price-label">Price per day</div>
                                 </div>
                             </div>
                         </div>
-                    <?php endforeach; ?>
+                    </div>
                 </div>
+            </div>
             <?php endif; ?>
         </div>
     </main>
+
+
 </body>
 </html>
