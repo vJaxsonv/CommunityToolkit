@@ -1,4 +1,4 @@
-﻿<?php require_once 'config.php'; ?>
+<?php require_once 'config.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -75,7 +75,7 @@
             
             <div class="auth-footer">
                 <p>Don't have an account? <a href="register.php">Sign up</a></p>
-                <p><a href="index.html">← Back to home</a></p>
+                <p><a href="/">← Back to home</a></p>
                 <p class="text-sm">
                     <a href="#" onclick="openModal('termsModal'); return false;">Terms of Service</a> • 
                     <a href="#" onclick="openModal('privacyModal'); return false;">Privacy Policy</a>
