@@ -8,12 +8,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password = $_POST['password'] ?? '';
     $confirm_password = $_POST['confirm_password'] ?? '';
     $phone = trim($_POST['phone'] ?? '');
+    $addressLine1 = trim($_POST['address_line1'] ?? '');
+    $addressLine2 = trim($_POST['address_line2'] ?? '');
+    $stateId = intval($_POST['state'] ?? 0);
+    $zipcode = trim($_POST['zipcode'] ?? '');
     $genderId = intval($_POST['gender'] ?? 0);
     $neighborhoodId = intval($_POST['neighborhood'] ?? 0);
     
     // Validate required fields
-    if (empty($firstname) || empty($lastname) || empty($email) || empty($password) || $genderId == 0 || $neighborhoodId == 0) {
+    if (empty($firstname) || empty($lastname) || empty($email) || empty($password) || 
+        empty($addressLine1) || $stateId == 0 || empty($zipcode) || 
+        $genderId == 0 || $neighborhoodId == 0) {
         header('Location: register.php?error=missing_fields');
+        exit;
+    }
+    
+    // Validate zip code is exactly 5 digits
+    if (!preg_match('/^\d{5}$/', $zipcode)) {
+        header('Location: register.php?error=invalid_zipcode');
         exit;
     }
     
@@ -35,10 +47,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Hash password
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
         
-        // Insert new user with selected gender and neighborhood
+        // Insert new user with address fields
         $sql = "INSERT INTO TUsers (FirstName, LastName, Email, Password, PhoneNumber, 
+                AddressLine1, AddressLine2, StateID, ZipCode,
                 GenderID, ProfilePictureURL, Bio, NeighborhoodID, AddedDate, AccountStatus) 
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), 1)";
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), 1)";
         
         $stmt = $pdo->prepare($sql);
         
@@ -50,11 +63,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $lastname, 
             $email, 
             $hashedPassword, 
-            $phone, 
-            $genderId,        // From dropdown
+            $phone,
+            $addressLine1,
+            $addressLine2,
+            $stateId,
+            $zipcode,
+            $genderId,
             $profilePic, 
             $bio, 
-            $neighborhoodId   // From dropdown
+            $neighborhoodId
         ]);
         
         if ($result) {

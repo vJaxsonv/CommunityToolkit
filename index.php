@@ -31,10 +31,12 @@ $categories = $pdo->query("SELECT CategoryID, CategoryName FROM TCategories WHER
                         <i class="fas fa-home"></i>
                         <span>Home</span>
                     </a>
-                    <a href="my_items.php" class="nav-link">
-                        <i class="fas fa-box"></i>
-                        <span>My Items</span>
-                    </a>
+                    <?php if (isset($_SESSION['user_id'])): ?>
+                        <a href="MyItems.php" class="nav-link">
+                            <i class="fas fa-box"></i>
+                            <span>My Items</span>
+                        </a>
+                    <?php endif; ?>
                     <a href="#" class="nav-link">
                         <i class="fas fa-map-marker-alt"></i>
                         <span>Map</span>

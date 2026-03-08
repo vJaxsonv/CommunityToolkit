@@ -4,6 +4,9 @@ require_once 'config.php';
 // Fetch genders for dropdown
 $genders = $pdo->query("SELECT GenderID, Gender FROM TGenders ORDER BY GenderID")->fetchAll(PDO::FETCH_ASSOC);
 
+// Fetch states for dropdown
+$states = $pdo->query("SELECT StateID, StateName FROM TStates ORDER BY StateName")->fetchAll(PDO::FETCH_ASSOC);
+
 // Fetch neighborhoods for dropdown
 $neighborhoods = $pdo->query("SELECT NeighborhoodID, NeighborhoodName, City FROM TNeighborhoods ORDER BY NeighborhoodName")->fetchAll(PDO::FETCH_ASSOC);
 ?>
@@ -36,6 +39,8 @@ $neighborhoods = $pdo->query("SELECT NeighborhoodID, NeighborhoodName, City FROM
                         echo 'Passwords do not match';
                     } elseif($_GET['error'] == 'missing_fields') {
                         echo 'Please fill in all required fields';
+                    } elseif($_GET['error'] == 'invalid_zipcode') {
+                        echo 'Zip code must be exactly 5 digits';
                     } else {
                         echo 'Registration failed. Please try again.';
                     }
@@ -68,6 +73,37 @@ $neighborhoods = $pdo->query("SELECT NeighborhoodID, NeighborhoodName, City FROM
                 </div>
                 
                 <div class="form-group">
+                    <label>Street Address *</label>
+                    <input type="text" name="address_line1" required placeholder="123 Main Street">
+                </div>
+                
+                <div class="form-group">
+                    <label>Apartment, Unit, Suite, etc.</label>
+                    <input type="text" name="address_line2" placeholder="Apt 4B">
+                    <small>Optional</small>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>State *</label>
+                        <select name="state" required>
+                            <option value="">Select State</option>
+                            <?php foreach($states as $state): ?>
+                                <option value="<?php echo $state['StateID']; ?>">
+                                    <?php echo htmlspecialchars($state['StateName']); ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Zip Code *</label>
+                        <input type="text" name="zipcode" id="zipcode" required pattern="[0-9]{5}" maxlength="5" placeholder="45202">
+                        <small>5 digits</small>
+                    </div>
+                </div>
+                
+                <div class="form-group">
                     <label>Gender *</label>
                     <select name="gender" required>
                         <option value="">Select Gender</option>
@@ -85,7 +121,13 @@ $neighborhoods = $pdo->query("SELECT NeighborhoodID, NeighborhoodName, City FROM
                         <option value="">Select Neighborhood</option>
                         <?php foreach($neighborhoods as $neighborhood): ?>
                             <option value="<?php echo $neighborhood['NeighborhoodID']; ?>">
-                                <?php echo htmlspecialchars($neighborhood['NeighborhoodName'] . ', ' . $neighborhood['City']); ?>
+                                <?php 
+                                    if ($neighborhood['City']) {
+                                        echo htmlspecialchars($neighborhood['NeighborhoodName'] . ', ' . $neighborhood['City']);
+                                    } else {
+                                        echo htmlspecialchars($neighborhood['NeighborhoodName']);
+                                    }
+                                ?>
                             </option>
                         <?php endforeach; ?>
                     </select>
@@ -114,7 +156,7 @@ $neighborhoods = $pdo->query("SELECT NeighborhoodID, NeighborhoodName, City FROM
             
             <div class="auth-footer">
                 <p>Already have an account? <a href="login.php">Sign in</a></p>
-                <p><a href="index.html">← Back to home</a></p>
+                <p><a href="index.php">← Back to home</a></p>
             </div>
         </div>
     </div>
@@ -198,6 +240,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const password = document.getElementById('password');
     const confirmPassword = document.getElementById('confirm_password');
     const phone = document.querySelector('input[name="phone"]');
+    const zipcode = document.getElementById('zipcode');
+    
+    // Zip code - only allow numbers, max 5 digits
+    if (zipcode) {
+        zipcode.addEventListener('input', function(e) {
+            this.value = this.value.replace(/[^0-9]/g, '').substring(0, 5);
+        });
+    }
     
     form.addEventListener('submit', function(e) {
         if (password.value !== confirmPassword.value) {
@@ -207,6 +257,15 @@ document.addEventListener('DOMContentLoaded', function() {
             return false;
         }
         
+        // Validate zip code is exactly 5 digits
+        if (zipcode && zipcode.value.length !== 5) {
+            e.preventDefault();
+            alert('Zip code must be exactly 5 digits.');
+            zipcode.focus();
+            return false;
+        }
+        
+        // Strip phone formatting
         if (phone && phone.value) {
             phone.value = phone.value.replace(/[^0-9]/g, '');
         }
