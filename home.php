@@ -1,11 +1,15 @@
 <?php 
 require_once 'config.php';
+require_once 'location_helper.php';
 
 // Check if user is logged in
 if (!isset($_SESSION['user_id'])) {
     header('Location: login.php');
     exit;
 }
+
+// Get user's location
+$userLocation = getUserLocation($pdo);
 
 // Get search and filter parameters
 $search = $_GET['search'] ?? '';
@@ -20,7 +24,7 @@ $sql = "SELECT l.*,
         c.CategoryName,
         cond.Condition,
         ls.Status,
-        n.NeighborhoodName, n.City,
+        n.NeighborhoodName, n.City, n.CenterLatitude, n.CenterLongitude,
         (SELECT PhotoURL FROM TListingPhotos WHERE ListingID = l.ListingID ORDER BY SortOrder LIMIT 1) as PrimaryImage
         FROM TListings l
         INNER JOIN TUsers u ON l.UserLenderID = u.UserID
@@ -128,6 +132,11 @@ $stmt = $pdo->prepare($sql);
 $stmt->execute($params);
 $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+// Add distance to listings and sort by proximity
+if (!empty($items)) {
+    $items = addDistanceToListings($items, $userLocation['latitude'], $userLocation['longitude']);
+}
+
 // Get categories for filter - ParentCategoryID = 0 for top level
 $categories = $pdo->query("SELECT CategoryID, CategoryName FROM TCategories WHERE ParentCategoryID = 0 ORDER BY CategoryName")->fetchAll(PDO::FETCH_ASSOC);
 ?>
@@ -140,7 +149,7 @@ $categories = $pdo->query("SELECT CategoryID, CategoryName FROM TCategories WHER
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body>
+<body data-logged-in="true" data-has-account-location="<?php echo ($userLocation['source'] === 'account_neighborhood' || $userLocation['source'] === 'account_zipcode') ? 'true' : 'false'; ?>">
     <!-- Header/Navigation -->
     <header class="main-header">
         <div class="container">
@@ -159,7 +168,7 @@ $categories = $pdo->query("SELECT CategoryID, CategoryName FROM TCategories WHER
                         <i class="fas fa-home"></i>
                         <span>Home</span>
                     </a>
-                    <a href="my_items.php" class="nav-link">
+                    <a href="myitems.php" class="nav-link">
                         <i class="fas fa-box"></i>
                         <span>My Items</span>
                     </a>
@@ -359,7 +368,9 @@ $categories = $pdo->query("SELECT CategoryID, CategoryName FROM TCategories WHER
                                     <div>
                                         <div class="user-name"><?php echo htmlspecialchars($item['FirstName'] . ' ' . substr($item['LastName'], 0, 1) . '.'); ?></div>
                                         <div class="user-distance">
-                                            <?php if ($item['City']): ?>
+                                            <?php if (isset($item['distance']) && $item['distance'] !== null): ?>
+                                                <i class="fas fa-location-dot"></i> <?php echo number_format($item['distance'], 1); ?> mi away
+                                            <?php elseif ($item['City']): ?>
                                                 <?php echo htmlspecialchars($item['City']); ?>
                                             <?php else: ?>
                                                 Cincinnati area
@@ -594,5 +605,7 @@ $categories = $pdo->query("SELECT CategoryID, CategoryName FROM TCategories WHER
             flex: 1;
         }
     </style>
+    
+    <script src="location_manager.js"></script>
 </body>
 </html>

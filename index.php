@@ -1,5 +1,9 @@
 <?php 
 require_once 'config.php';
+require_once 'location_helper.php';
+
+// Get user's location (will use IP fallback for non-logged-in users)
+$userLocation = getUserLocation($pdo);
 
 // Get categories for filter
 $categories = $pdo->query("SELECT CategoryID, CategoryName FROM TCategories WHERE ParentCategoryID = 0 ORDER BY CategoryName")->fetchAll(PDO::FETCH_ASSOC);
@@ -14,7 +18,7 @@ $categories = $pdo->query("SELECT CategoryID, CategoryName FROM TCategories WHER
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body>
+<body data-logged-in="<?php echo isset($_SESSION['user_id']) ? 'true' : 'false'; ?>" data-has-account-location="false">
     <!-- Header/Navigation -->
     <header class="main-header">
         <div class="container">
@@ -353,3 +357,8 @@ async function loadSubcategories() {
     }
 }
 </script>
+
+<script src="location_manager.js"></script>
+
+</body>
+</html>

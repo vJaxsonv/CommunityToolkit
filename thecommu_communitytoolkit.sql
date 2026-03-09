@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Mar 08, 2026 at 12:01 AM
+-- Generation Time: Mar 08, 2026 at 11:22 PM
 -- Server version: 11.4.10-MariaDB
 -- PHP Version: 8.4.17
 
@@ -2187,6 +2187,7 @@ CREATE TABLE `TRentalRequests` (
   `UserBorrowerID` int(11) NOT NULL,
   `StartDate` datetime NOT NULL,
   `EndDate` datetime NOT NULL,
+  `RateTypeID` int(11) NOT NULL DEFAULT 1,
   `RequestStatusID` int(11) NOT NULL,
   `RequestDate` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
@@ -2195,9 +2196,9 @@ CREATE TABLE `TRentalRequests` (
 -- Dumping data for table `TRentalRequests`
 --
 
-INSERT INTO `TRentalRequests` (`RentalRequestID`, `ListingID`, `UserBorrowerID`, `StartDate`, `EndDate`, `RequestStatusID`, `RequestDate`) VALUES
-(1, 1, 6, '2026-03-05 10:00:00', '2026-03-06 10:00:00', 2, '2026-02-28 15:38:59'),
-(2, 1, 6, '2026-03-05 10:00:00', '2026-03-06 10:00:00', 2, '2026-02-28 15:53:39');
+INSERT INTO `TRentalRequests` (`RentalRequestID`, `ListingID`, `UserBorrowerID`, `StartDate`, `EndDate`, `RateTypeID`, `RequestStatusID`, `RequestDate`) VALUES
+(1, 1, 6, '2026-03-05 10:00:00', '2026-03-06 10:00:00', 1, 2, '2026-02-28 15:38:59'),
+(2, 1, 6, '2026-03-05 10:00:00', '2026-03-06 10:00:00', 1, 2, '2026-02-28 15:53:39');
 
 -- --------------------------------------------------------
 
@@ -2659,7 +2660,8 @@ ALTER TABLE `TRentalRequests`
   ADD PRIMARY KEY (`RentalRequestID`),
   ADD KEY `ListingID` (`ListingID`),
   ADD KEY `UserBorrowerID` (`UserBorrowerID`),
-  ADD KEY `RequestStatusID` (`RequestStatusID`);
+  ADD KEY `RequestStatusID` (`RequestStatusID`),
+  ADD KEY `FK_RentalRequests_RateTypes` (`RateTypeID`);
 
 --
 -- Indexes for table `TRentals`
@@ -2874,6 +2876,12 @@ ALTER TABLE `TUsers`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `TRentalRequests`
+--
+ALTER TABLE `TRentalRequests`
+  ADD CONSTRAINT `FK_RentalRequests_RateTypes` FOREIGN KEY (`RateTypeID`) REFERENCES `TRateTypes` (`RateTypeID`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `TUsers`
