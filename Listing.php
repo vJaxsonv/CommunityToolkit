@@ -17,13 +17,13 @@ class Listing {
     public function getAll($filters = []) {
         $sql = "SELECT l.*, 
                 c.CategoryName, 
-                cond.ConditionName,
-                ls.StatusName as ListingStatus,
+                cond.Condition,
+                ls.Status as ListingStatus,
                 rt.RateType,
                 u.FirstName as OwnerFirstName, u.LastName as OwnerLastName,
                 u.UserID as OwnerUserID,
                 n.NeighborhoodName, n.City,
-                (SELECT PhotoURL FROM TLisitingPhotos WHERE ListingID = l.ListingID ORDER BY SortOrder LIMIT 1) as PrimaryImage
+                (SELECT PhotoURL FROM TListingPhotos WHERE ListingID = l.ListingID ORDER BY SortOrder LIMIT 1) as PrimaryImage
                 FROM TListings l
                 INNER JOIN TCategories c ON l.CategoryID = c.CategoryID
                 INNER JOIN TConditions cond ON l.ConditionID = cond.ConditionID
@@ -31,7 +31,7 @@ class Listing {
                 INNER JOIN TRateTypes rt ON l.RateTypeID = rt.RateTypeID
                 INNER JOIN TUsers u ON l.UserLenderID = u.UserID
                 LEFT JOIN TNeighborhoods n ON u.NeighborhoodID = n.NeighborhoodID
-                WHERE ls.StatusName = 'Active'";
+                WHERE ls.Status = 'Active'";
         
         $params = [];
         
@@ -80,8 +80,8 @@ class Listing {
     public function findById($id) {
         $sql = "SELECT l.*, 
                 c.CategoryName, parent.CategoryName as ParentCategory,
-                cond.ConditionName,
-                ls.StatusName as ListingStatus,
+                cond.Condition,
+                ls.Status as ListingStatus,
                 rt.RateType,
                 n.NeighborhoodName, n.City, n.ZipCode,
                 u.UserID as OwnerUserID, u.FirstName as OwnerFirstName, 
@@ -169,7 +169,7 @@ class Listing {
      * Get listing photos
      */
     public function getPhotos($listingId) {
-        $sql = "SELECT * FROM TLisitingPhotos 
+        $sql = "SELECT * FROM TListingPhotos 
                 WHERE ListingID = :listing_id 
                 ORDER BY SortOrder ASC, AddedDate ASC";
         
@@ -180,7 +180,7 @@ class Listing {
      * Add listing photo
      */
     public function addPhoto($listingId, $photoUrl, $sortOrder = 0) {
-        $sql = "INSERT INTO TLisitingPhotos (ListingID, PhotoURL, SortOrder) 
+        $sql = "INSERT INTO TListingPhotos (ListingID, PhotoURL, SortOrder) 
                 VALUES (:listing_id, :photo_url, :sort_order)";
         
         $params = [

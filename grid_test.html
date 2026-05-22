@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .filters {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 20px;
+            background: white;
+            border: 1px solid #ddd;
+        }
+        
+        .filter-dropdown select {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+        }
+        
+        .view-options {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+            margin-left: auto;
+        }
+        
+        .view-option {
+            width: 40px;
+            height: 40px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.2s;
+            padding: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .view-option:hover {
+            border-color: #667eea;
+            background: #f9f9ff;
+        }
+        
+        .view-option.active {
+            border-color: #667eea;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .view-option svg {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .view-option:not(.active) .grid-icon-rect {
+            fill: #999;
+        }
+        
+        .view-option.active .grid-icon-rect {
+            fill: white;
+        }
+        
+        .items-column {
+            display: grid;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .items-column.grid-2 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        
+        .items-column.grid-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+        
+        .item-card {
+            background: #f0f0f0;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h2>Grid View Switcher Test</h2>
+    
+    <div class="filters">
+        <div class="filter-dropdown">
+            <select>
+                <option>All Categories</option>
+            </select>
+        </div>
+        
+        <div style="width: 1px; height: 30px; background: #ddd; margin: 0 8px;"></div>
+        
+        <div class="view-options">
+            <button type="button" class="view-option" data-grid="2" title="2 Columns">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <rect class="grid-icon-rect" x="2" y="2" width="9" height="20" rx="2"/>
+                    <rect class="grid-icon-rect" x="13" y="2" width="9" height="20" rx="2"/>
+                </svg>
+            </button>
+            
+            <button type="button" class="view-option active" data-grid="3" title="3 Columns">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <rect class="grid-icon-rect" x="2" y="2" width="5.5" height="20" rx="1.5"/>
+                    <rect class="grid-icon-rect" x="9.25" y="2" width="5.5" height="20" rx="1.5"/>
+                    <rect class="grid-icon-rect" x="16.5" y="2" width="5.5" height="20" rx="1.5"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+    
+    <div class="items-column grid-3">
+        <div class="item-card">Item 1</div>
+        <div class="item-card">Item 2</div>
+        <div class="item-card">Item 3</div>
+        <div class="item-card">Item 4</div>
+    </div>
+    
+    <script>
+        const buttons = document.querySelectorAll('.view-option');
+        const grid = document.querySelector('.items-column');
+        
+        buttons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const gridNum = this.dataset.grid;
+                grid.className = 'items-column grid-' + gridNum;
+                
+                buttons.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

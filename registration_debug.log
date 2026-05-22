@@ -1,0 +1,441 @@
+=== REGISTRATION DEBUG 2026-03-10 07:37:39 ===
+Array
+(
+    [firstname] => Braxton
+    [lastname] => Sadler
+    [email] => fiftypoundpuppy@yahoo.com
+    [password] => testing123*
+    [confirm_password] => testing123*
+    [phone] => 5133077119
+    [address_line1] => 540 Elberon Ave
+    [address_line2] => 
+    [state] => 1
+    [zipcode] => 45205
+    [city] => 1
+    [neighborhood] => 1
+    [gender] => 3
+    [bio] => Test bio
+)
+
+
+Parsed values:
+neighborhoodId: 1
+autoNeighborhood: 0
+DATABASE ERROR: SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect integer value: 'Active' for column `thecommu_communitytoolkit`.`TUsers`.`AccountStatus` at row 1
+
+=== REGISTRATION DEBUG 2026-03-10 07:52:32 ===
+Array
+(
+    [firstname] => Alice
+    [lastname] => McIntosh
+    [email] => fiftypoundpuppy@yahoo.com
+    [password] => testing123*
+    [confirm_password] => testing123*
+    [phone] => 5133077119
+    [address_line1] => 639 Dayton St
+    [address_line2] => 
+    [state] => 1
+    [zipcode] => 45205
+    [city] => 1
+    [neighborhood] => 1
+    [gender] => 3
+    [bio] => Test bio
+)
+
+
+Parsed values:
+neighborhoodId: 1
+autoNeighborhood: 0
+SUCCESS - User created with ID: 18
+
+=== REGISTRATION DEBUG 2026-03-10 17:33:33 ===
+Array
+(
+    [firstname] => Jaxson
+    [lastname] => DeHaven
+    [email] => JaxDeHave@yahoo.com
+    [password] => B!ingJaxson1
+    [confirm_password] => B!ingJaxson1
+    [phone] => 1234576525
+    [address_line1] => 101 W 4th St
+    [address_line2] => 
+    [state] => 1
+    [zipcode] => 45247
+    [city] => 1
+    [neighborhood] => 16
+    [gender] => 1
+    [bio] => 123321213
+)
+
+
+Parsed values:
+neighborhoodId: 16
+autoNeighborhood: 0
+=== REGISTRATION DEBUG 2026-03-10 17:33:58 ===
+Array
+(
+    [firstname] => Jaxson
+    [lastname] => DeHaven
+    [email] => Bing@yahoo.com
+    [password] => B!ingJaxson1
+    [confirm_password] => B!ingJaxson1
+    [phone] => 1234576525
+    [address_line1] => 101 W 4th St
+    [address_line2] => 
+    [state] => 1
+    [zipcode] => 45247
+    [city] => 1
+    [neighborhood] => 17
+    [gender] => 2
+    [bio] => 213321
+)
+
+
+Parsed values:
+neighborhoodId: 17
+autoNeighborhood: 0
+SUCCESS - User created with ID: 19
+
+=== REGISTRATION DEBUG 2026-03-11 23:55:15 ===
+Array
+(
+    [firstname] => Nahom
+    [lastname] => Kahsay
+    [email] => nk@yahoo.com
+    [password] => Classof2019!
+    [confirm_password] => Classof2019!
+    [phone] => 5555555555
+    [address_line1] => 123 Main St
+    [address_line2] => 
+    [state] => 1
+    [zipcode] => 45231
+    [city] => 1
+    [neighborhood] => 7
+    [gender] => 1
+    [bio] => 
+)
+
+
+Parsed values:
+neighborhoodId: 7
+autoNeighborhood: 0
+SUCCESS - User created with ID: 20
+
+=== REGISTRATION DEBUG 2026-03-12 00:23:33 ===
+Array
+(
+    [firstname] => test123
+    [lastname] => Test123
+    [email] => 123456@yahoo.com
+    [password] => !1Test1234567
+    [confirm_password] => !1Test1234567
+    [phone] => 2421412412
+    [address_line1] => 6295 Kellogg Ave
+    [address_line2] => 
+    [state] => 1
+    [zipcode] => 45230
+    [city] => 17
+    [neighborhood] => 113
+    [gender] => 2
+    [bio] => 32
+)
+
+
+Parsed values:
+neighborhoodId: 113
+autoNeighborhood: 0
+SUCCESS - User created with ID: 21
+
+=== REGISTRATION DEBUG 2026-03-15 07:44:16 ===
+Array
+(
+    [firstname] => Customer
+    [lastname] => Service
+    [email] => customerservice@thecommunitytoolkit.com
+    [password] => CPDMCapstone2026
+    [confirm_password] => CPDMCapstone2026
+    [phone] => 5139999999
+    [address_line1] => 123 Main St
+    [address_line2] => 
+    [state] => 1
+    [zipcode] => 45202
+    [city] => 
+    [neighborhood] => 
+    [gender] => 2
+    [bio] => 
+)
+
+
+Parsed values:
+neighborhoodId: 0
+autoNeighborhood: 0
+Missing fields: neighborhood
+=== REGISTRATION DEBUG 2026-03-15 07:49:31 ===
+Array
+(
+    [firstname] => Customer
+    [lastname] => Service
+    [email] => customerservice@thecommunitytoolkit.com
+    [password] => CPDMCapstone2026*
+    [confirm_password] => CPDMCapstone2026*
+    [phone] => 5135555555
+    [address_line1] => 123 Main St
+    [address_line2] => 
+    [state] => 1
+    [zipcode] => 45202
+    [city] => 1
+    [neighborhood] => 14
+    [gender] => 2
+    [bio] => 
+)
+
+
+Parsed values:
+neighborhoodId: 14
+autoNeighborhood: 0
+SUCCESS - User created with ID: 22
+
+=== REGISTRATION DEBUG 2026-03-15 08:00:15 ===
+Array
+(
+)
+
+
+=== REGISTRATION DEBUG 2026-03-15 18:15:24 ===
+Array
+(
+    [firstname] => Jaxson
+    [lastname] => DeHaven
+    [email] => JaxsonTest@yahoo.com
+    [password] => bERRYwALL1234533!
+    [confirm_password] => bERRYwALL1234533!
+    [phone] => 5132222222
+    [address_line1] => 5640 HAUBNER RD
+    [address_line2] => 
+    [state] => 1
+    [zipcode] => 45230
+    [city] => 1
+    [neighborhood] => 33
+    [gender] => 1
+    [bio] => Hello I love collecting books and movies to showcase them to my friends and family
+)
+
+
+Parsed values:
+neighborhoodId: 33
+autoNeighborhood: 0
+SUCCESS - User created with ID: 23
+
+=== REGISTRATION DEBUG 2026-03-18 18:58:33 ===
+Array
+(
+    [firstname] => Kahom
+    [lastname] => Nahsay
+    [email] => kn@yahoo.com
+    [password] => Awesome1!
+    [confirm_password] => Awesome1!
+    [phone] => 1111111111
+    [address_line1] => 2244 Oak St
+    [address_line2] => 
+    [state] => 1
+    [zipcode] => 45231
+    [city] => 1
+    [neighborhood] => 7
+    [gender] => 1
+    [bio] => 
+    [agree_terms] => on
+)
+
+
+Parsed values:
+neighborhoodId: 7
+autoNeighborhood: 0
+SUCCESS - User created with ID: 24
+
+=== REGISTRATION DEBUG 2026-03-23 18:35:33 ===
+Array
+(
+    [firstname] => J
+    [lastname] => C
+    [email] => Jc@yahoo.com
+    [password] => Temp124!
+    [confirm_password] => Temp124!
+    [phone] => 5556677777
+    [address_line1] => 1314 E Walnut St
+    [address_line2] => 
+    [state] => 2
+    [zipcode] => 41071
+    [city] => 48
+    [neighborhood] => 176
+    [gender] => 2
+    [bio] => 
+    [agree_terms] => on
+)
+
+
+Parsed values:
+neighborhoodId: 176
+autoNeighborhood: 0
+SUCCESS - User created with ID: 25
+
+=== REGISTRATION DEBUG 2026-03-25 12:07:28 ===
+Array
+(
+)
+
+
+=== REGISTRATION DEBUG 2026-03-25 12:09:20 ===
+Array
+(
+)
+
+
+=== REGISTRATION DEBUG 2026-03-30 09:59:47 ===
+Array
+(
+)
+
+
+=== REGISTRATION DEBUG 2026-04-02 00:27:15 ===
+Array
+(
+    [firstname] => Jaxson
+    [lastname] => DeHaven
+    [email] => Dehaventest2@yahoo.com
+    [password] => Dehaventest!1
+    [confirm_password] => Dehaventest!1
+    [phone] => 1221212422
+    [address_line1] => 101 W 4th St
+    [address_line2] => 
+    [state] => 1
+    [zipcode] => 45247
+    [city] => 1
+    [neighborhood] => 22
+    [gender] => 1
+    [bio] => 
+    [agree_terms] => on
+)
+
+
+Parsed values:
+neighborhoodId: 22
+autoNeighborhood: 0
+SUCCESS - User created with ID: 26
+
+=== REGISTRATION DEBUG 2026-04-13 23:20:16 ===
+Array
+(
+)
+
+
+=== REGISTRATION DEBUG 2026-04-21 09:27:44 ===
+Array
+(
+)
+
+
+=== REGISTRATION DEBUG 2026-04-24 02:45:30 ===
+Array
+(
+    [firstname] => Leah Jo
+    [lastname] => Brockman
+    [email] => ljb4ever@gmail.com
+    [password] => 12345678!
+    [confirm_password] => 12345678!
+    [phone] => 5134986666
+    [address_line1] => 123 Main
+    [address_line2] => 
+    [state] => 1
+    [zipcode] => 45223
+    [city] => 1
+    [neighborhood] => 32
+    [gender] => 2
+    [bio] => 
+    [agree_terms] => on
+)
+
+
+Parsed values:
+neighborhoodId: 32
+autoNeighborhood: 0
+SUCCESS - User created with ID: 27
+
+=== REGISTRATION DEBUG 2026-04-25 15:32:57 ===
+Array
+(
+    [firstname] => Nahom
+    [lastname] => Kahsay
+    [email] => nahomkahsay50@gmailc.om
+    [password] => Classof2019!
+    [confirm_password] => Classof2019!
+    [phone] => 5135468659
+    [address_line1] => 2836 Chopin Dr
+    [address_line2] => 
+    [state] => 1
+    [zipcode] => 45231
+    [city] => 1
+    [neighborhood] => 7
+    [gender] => 1
+    [bio] => 
+    [agree_terms] => on
+)
+
+
+Parsed values:
+neighborhoodId: 7
+autoNeighborhood: 0
+SUCCESS - User created with ID: 28
+
+=== REGISTRATION DEBUG 2026-04-27 20:49:25 ===
+Array
+(
+    [firstname] => Braxton
+    [lastname] => Sadler
+    [email] => fiftypoundpuppy@gmail.com
+    [password] => cPhilip1031*
+    [confirm_password] => cPhilip1031*
+    [phone] => 5555555555
+    [address_line1] => 528 W McMicken Ave
+    [address_line2] => 
+    [state] => 1
+    [zipcode] => 45214
+    [city] => 1
+    [neighborhood] => 43
+    [gender] => 1
+    [bio] => 
+    [agree_terms] => on
+)
+
+
+Parsed values:
+neighborhoodId: 43
+autoNeighborhood: 0
+SUCCESS - User created with ID: 29
+
+=== REGISTRATION DEBUG 2026-04-30 17:05:11 ===
+Array
+(
+)
+
+
+=== REGISTRATION DEBUG 2026-05-07 17:54:22 ===
+Array
+(
+    [firstname] => 4sb6ecgu4
+    [lastname] => 6uymdt
+    [email] => m9s9w6caa@ncx98.com
+    [password] => J$0CRwtCJF
+    [confirm_password] => J$0CRwtCJF
+    [phone] => 010175457544
+    [address_line1] => rbbnrn
+    [address_line2] => l5avaz
+    [zipcode] => 76073
+    [agree_terms] => 
+    [state] => 1
+    [city] => 
+    [neighborhood] => 
+    [gender] => 3
+    [bio] => qlhfdr
+)
+
+
