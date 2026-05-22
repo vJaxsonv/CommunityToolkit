@@ -1,0 +1,115 @@
+[15-Mar-2026 09:18:13 UTC] PHP Warning:  Undefined variable $search in /home/thecommu/public_html/admin/users.php on line 50
+[15-Mar-2026 09:18:13 UTC] PHP Warning:  Undefined variable $filter in /home/thecommu/public_html/admin/users.php on line 50
+[15-Mar-2026 09:18:13 UTC] PHP Warning:  Undefined variable $filter in /home/thecommu/public_html/admin/users.php on line 50
+[15-Mar-2026 09:18:13 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/thecommu/public_html/admin/users.php:50) in /home/thecommu/public_html/admin/users.php on line 51
+[15-Mar-2026 09:18:49 UTC] PHP Warning:  Undefined variable $search in /home/thecommu/public_html/admin/users.php on line 50
+[15-Mar-2026 09:18:49 UTC] PHP Warning:  Undefined variable $filter in /home/thecommu/public_html/admin/users.php on line 50
+[15-Mar-2026 09:18:49 UTC] PHP Warning:  Undefined variable $filter in /home/thecommu/public_html/admin/users.php on line 50
+[15-Mar-2026 09:18:49 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/thecommu/public_html/admin/users.php:50) in /home/thecommu/public_html/admin/users.php on line 51
+[21-Mar-2026 20:27:12 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'rt.ReviewType' in 'SELECT' in /home/thecommu/public_html/admin/reviews.php:66
+Stack trace:
+#0 /home/thecommu/public_html/admin/reviews.php(66): PDO->prepare('SELECT r.Review...')
+#1 {main}
+  thrown in /home/thecommu/public_html/admin/reviews.php on line 66
+[21-Mar-2026 20:34:14 UTC] [ADMIN MESSAGE ACCESS] Admin UserID=22 (Customer Service) accessed messages at 2026-03-21 20:34:14
+[21-Mar-2026 20:34:14 UTC] [ADMIN MESSAGE VIEW] Admin UserID=22 viewed ConversationID=2 (Listing: Cordless Drill) at 2026-03-21 20:34:14
+[21-Mar-2026 20:36:47 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'rt.ReviewType' in 'SELECT' in /home/thecommu/public_html/admin/reviews.php:66
+Stack trace:
+#0 /home/thecommu/public_html/admin/reviews.php(66): PDO->prepare('SELECT r.Review...')
+#1 {main}
+  thrown in /home/thecommu/public_html/admin/reviews.php on line 66
+[21-Mar-2026 20:36:51 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'rt.ReviewType' in 'SELECT' in /home/thecommu/public_html/admin/reviews.php:66
+Stack trace:
+#0 /home/thecommu/public_html/admin/reviews.php(66): PDO->prepare('SELECT r.Review...')
+#1 {main}
+  thrown in /home/thecommu/public_html/admin/reviews.php on line 66
+[21-Mar-2026 20:36:57 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'rt.ReviewType' in 'SELECT' in /home/thecommu/public_html/admin/reviews.php:66
+Stack trace:
+#0 /home/thecommu/public_html/admin/reviews.php(66): PDO->prepare('SELECT r.Review...')
+#1 {main}
+  thrown in /home/thecommu/public_html/admin/reviews.php on line 66
+[24-Mar-2026 06:00:40 UTC] [ADMIN MESSAGE ACCESS] Admin UserID=22 (Customer Service) accessed messages at 2026-03-24 06:00:40
+[24-Mar-2026 06:00:40 UTC] [ADMIN MESSAGE VIEW] Admin UserID=22 viewed ConversationID=5 (Listing: Keurig Coffee Maker) at 2026-03-24 06:00:40
+[25-Mar-2026 01:40:30 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'rt.ReviewType' in 'SELECT' in /home/thecommu/public_html/admin/reviews.php:66
+Stack trace:
+#0 /home/thecommu/public_html/admin/reviews.php(66): PDO->prepare('SELECT r.Review...')
+#1 {main}
+  thrown in /home/thecommu/public_html/admin/reviews.php on line 66
+[25-Mar-2026 02:37:21 UTC] [ADMIN MESSAGE ACCESS] Admin UserID=22 (Customer Service) accessed messages at 2026-03-25 02:37:21
+[25-Mar-2026 02:37:21 UTC] [ADMIN MESSAGE VIEW] Admin UserID=22 viewed ConversationID=5 (Listing: Keurig Coffee Maker) at 2026-03-25 02:37:21
+[25-Mar-2026 02:37:28 UTC] [ADMIN MESSAGE ACCESS] Admin UserID=22 (Customer Service) accessed messages at 2026-03-25 02:37:28
+[25-Mar-2026 02:37:28 UTC] [ADMIN MESSAGE VIEW] Admin UserID=22 viewed ConversationID=2 (Listing: Cordless Drill) at 2026-03-25 02:37:28
+[25-Mar-2026 02:37:37 UTC] [ADMIN MESSAGE ACCESS] Admin UserID=22 (Customer Service) accessed messages at 2026-03-25 02:37:37
+[25-Mar-2026 02:37:37 UTC] [ADMIN MESSAGE VIEW] Admin UserID=22 viewed ConversationID=5 (Listing: Keurig Coffee Maker) at 2026-03-25 02:37:37
+[25-Mar-2026 22:54:08 UTC] [ADMIN MESSAGE ACCESS] Admin UserID=22 (Customer Service) accessed messages at 2026-03-25 22:54:08
+[25-Mar-2026 22:54:08 UTC] [ADMIN MESSAGE VIEW] Admin UserID=22 viewed ConversationID=5 (Listing: Keurig Coffee Maker) at 2026-03-25 22:54:08
+[28-Mar-2026 02:05:54 UTC] [ADMIN MESSAGE ACCESS] Admin UserID=22 (Customer Service) accessed messages at 2026-03-28 02:05:54
+[28-Mar-2026 02:05:54 UTC] [ADMIN MESSAGE VIEW] Admin UserID=22 viewed ConversationID=5 (Listing: Keurig Coffee Maker) at 2026-03-28 02:05:54
+[28-Mar-2026 02:07:42 UTC] PHP Warning:  require_once(admin_auth.php): Failed to open stream: No such file or directory in /home/thecommu/public_html/admin/reports.php on line 1
+[28-Mar-2026 02:07:42 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'admin_auth.php' (include_path='.:/opt/cpanel/ea-php84/root/usr/share/pear') in /home/thecommu/public_html/admin/reports.php:1
+Stack trace:
+#0 {main}
+  thrown in /home/thecommu/public_html/admin/reports.php on line 1
+[28-Mar-2026 02:08:52 UTC] PHP Warning:  require_once(admin_auth.php): Failed to open stream: No such file or directory in /home/thecommu/public_html/admin/reports.php on line 1
+[28-Mar-2026 02:08:52 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'admin_auth.php' (include_path='.:/opt/cpanel/ea-php84/root/usr/share/pear') in /home/thecommu/public_html/admin/reports.php:1
+Stack trace:
+#0 {main}
+  thrown in /home/thecommu/public_html/admin/reports.php on line 1
+[28-Mar-2026 02:25:32 UTC] PHP Warning:  require_once(admin_auth.php): Failed to open stream: No such file or directory in /home/thecommu/public_html/admin/reports.php on line 1
+[28-Mar-2026 02:25:32 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'admin_auth.php' (include_path='.:/opt/cpanel/ea-php84/root/usr/share/pear') in /home/thecommu/public_html/admin/reports.php:1
+Stack trace:
+#0 {main}
+  thrown in /home/thecommu/public_html/admin/reports.php on line 1
+[28-Mar-2026 02:25:34 UTC] PHP Warning:  require_once(admin_auth.php): Failed to open stream: No such file or directory in /home/thecommu/public_html/admin/messages.php on line 1
+[28-Mar-2026 02:25:34 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'admin_auth.php' (include_path='.:/opt/cpanel/ea-php84/root/usr/share/pear') in /home/thecommu/public_html/admin/messages.php:1
+Stack trace:
+#0 {main}
+  thrown in /home/thecommu/public_html/admin/messages.php on line 1
+[28-Mar-2026 02:25:38 UTC] PHP Warning:  require_once(admin_auth.php): Failed to open stream: No such file or directory in /home/thecommu/public_html/admin/reviews.php on line 1
+[28-Mar-2026 02:25:38 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'admin_auth.php' (include_path='.:/opt/cpanel/ea-php84/root/usr/share/pear') in /home/thecommu/public_html/admin/reviews.php:1
+Stack trace:
+#0 {main}
+  thrown in /home/thecommu/public_html/admin/reviews.php on line 1
+[28-Mar-2026 02:26:37 UTC] PHP Warning:  require_once(admin_auth.php): Failed to open stream: No such file or directory in /home/thecommu/public_html/admin/dashboard.php on line 1
+[28-Mar-2026 02:26:37 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'admin_auth.php' (include_path='.:/opt/cpanel/ea-php84/root/usr/share/pear') in /home/thecommu/public_html/admin/dashboard.php:1
+Stack trace:
+#0 {main}
+  thrown in /home/thecommu/public_html/admin/dashboard.php on line 1
+[28-Mar-2026 02:29:55 UTC] PHP Warning:  require_once(admin_auth.php): Failed to open stream: No such file or directory in /home/thecommu/public_html/admin/dashboard.php on line 1
+[28-Mar-2026 02:29:55 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'admin_auth.php' (include_path='.:/opt/cpanel/ea-php84/root/usr/share/pear') in /home/thecommu/public_html/admin/dashboard.php:1
+Stack trace:
+#0 {main}
+  thrown in /home/thecommu/public_html/admin/dashboard.php on line 1
+[28-Mar-2026 02:30:03 UTC] PHP Warning:  require_once(admin_auth.php): Failed to open stream: No such file or directory in /home/thecommu/public_html/admin/dashboard.php on line 1
+[28-Mar-2026 02:30:03 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'admin_auth.php' (include_path='.:/opt/cpanel/ea-php84/root/usr/share/pear') in /home/thecommu/public_html/admin/dashboard.php:1
+Stack trace:
+#0 {main}
+  thrown in /home/thecommu/public_html/admin/dashboard.php on line 1
+[26-Apr-2026 13:39:46 America/New_York] [ADMIN MESSAGE ACCESS] Admin UserID=22 (Customer Service) accessed messages at 2026-04-26 13:39:46
+[26-Apr-2026 13:39:46 America/New_York] [ADMIN MESSAGE VIEW] Admin UserID=22 viewed ConversationID=83 (Listing: Keurig Coffee Maker) at 2026-04-26 13:39:46
+[26-Apr-2026 13:40:14 America/New_York] [ADMIN MESSAGE ACCESS] Admin UserID=22 (Customer Service) accessed messages at 2026-04-26 13:40:14
+[26-Apr-2026 13:40:14 America/New_York] [ADMIN MESSAGE VIEW] Admin UserID=22 viewed ConversationID=83 (Listing: Keurig Coffee Maker) at 2026-04-26 13:40:14
+[26-Apr-2026 13:40:15 America/New_York] [ADMIN MESSAGE ACCESS] Admin UserID=22 (Customer Service) accessed messages at 2026-04-26 13:40:15
+[26-Apr-2026 13:40:15 America/New_York] [ADMIN MESSAGE VIEW] Admin UserID=22 viewed ConversationID=82 (Listing: Foldable Step Ladder) at 2026-04-26 13:40:15
+[26-Apr-2026 13:40:16 America/New_York] [ADMIN MESSAGE ACCESS] Admin UserID=22 (Customer Service) accessed messages at 2026-04-26 13:40:16
+[26-Apr-2026 13:40:16 America/New_York] [ADMIN MESSAGE VIEW] Admin UserID=22 viewed ConversationID=74 (Listing: Plastic Garden Rake) at 2026-04-26 13:40:16
+[26-Apr-2026 13:40:19 America/New_York] [ADMIN MESSAGE ACCESS] Admin UserID=22 (Customer Service) accessed messages at 2026-04-26 13:40:19
+[26-Apr-2026 13:40:19 America/New_York] [ADMIN MESSAGE VIEW] Admin UserID=22 viewed ConversationID=59 (Listing: Collection of Books) at 2026-04-26 13:40:19
+[26-Apr-2026 13:40:20 America/New_York] [ADMIN MESSAGE ACCESS] Admin UserID=22 (Customer Service) accessed messages at 2026-04-26 13:40:20
+[26-Apr-2026 13:40:20 America/New_York] [ADMIN MESSAGE VIEW] Admin UserID=22 viewed ConversationID=82 (Listing: Foldable Step Ladder) at 2026-04-26 13:40:20
+[26-Apr-2026 13:40:21 America/New_York] [ADMIN MESSAGE ACCESS] Admin UserID=22 (Customer Service) accessed messages at 2026-04-26 13:40:21
+[26-Apr-2026 13:40:21 America/New_York] [ADMIN MESSAGE VIEW] Admin UserID=22 viewed ConversationID=80 (Listing: Keurig Coffee Maker) at 2026-04-26 13:40:21
+[26-Apr-2026 13:40:21 America/New_York] [ADMIN MESSAGE ACCESS] Admin UserID=22 (Customer Service) accessed messages at 2026-04-26 13:40:21
+[26-Apr-2026 13:40:21 America/New_York] [ADMIN MESSAGE VIEW] Admin UserID=22 viewed ConversationID=81 (Listing: Dome Tent) at 2026-04-26 13:40:21
+[26-Apr-2026 13:40:28 America/New_York] [ADMIN MESSAGE ACCESS] Admin UserID=22 (Customer Service) accessed messages at 2026-04-26 13:40:28
+[26-Apr-2026 13:40:28 America/New_York] [ADMIN MESSAGE VIEW] Admin UserID=22 viewed ConversationID=60 (Listing: Plastic Garden Rake) at 2026-04-26 13:40:28
+[26-Apr-2026 13:40:29 America/New_York] [ADMIN MESSAGE ACCESS] Admin UserID=22 (Customer Service) accessed messages at 2026-04-26 13:40:29
+[26-Apr-2026 13:40:29 America/New_York] [ADMIN MESSAGE VIEW] Admin UserID=22 viewed ConversationID=78 (Listing: Wireless Noise Cancelling Headphones) at 2026-04-26 13:40:29
+[26-Apr-2026 13:40:30 America/New_York] [ADMIN MESSAGE ACCESS] Admin UserID=22 (Customer Service) accessed messages at 2026-04-26 13:40:30
+[26-Apr-2026 13:40:30 America/New_York] [ADMIN MESSAGE VIEW] Admin UserID=22 viewed ConversationID=79 (Listing: Humane Live Animal Trap) at 2026-04-26 13:40:30
+[26-Apr-2026 13:40:31 America/New_York] [ADMIN MESSAGE ACCESS] Admin UserID=22 (Customer Service) accessed messages at 2026-04-26 13:40:31
+[26-Apr-2026 13:40:31 America/New_York] [ADMIN MESSAGE VIEW] Admin UserID=22 viewed ConversationID=80 (Listing: Keurig Coffee Maker) at 2026-04-26 13:40:31
+[26-Apr-2026 13:40:31 America/New_York] [ADMIN MESSAGE ACCESS] Admin UserID=22 (Customer Service) accessed messages at 2026-04-26 13:40:31
+[26-Apr-2026 13:40:31 America/New_York] [ADMIN MESSAGE VIEW] Admin UserID=22 viewed ConversationID=81 (Listing: Dome Tent) at 2026-04-26 13:40:31
+[26-Apr-2026 17:14:54 America/New_York] [ADMIN MESSAGE ACCESS] Admin UserID=22 (Customer Service) accessed messages at 2026-04-26 17:14:54
+[26-Apr-2026 17:14:54 America/New_York] [ADMIN MESSAGE VIEW] Admin UserID=22 viewed ConversationID=5 (Listing: Keurig Coffee Maker) at 2026-04-26 17:14:54
